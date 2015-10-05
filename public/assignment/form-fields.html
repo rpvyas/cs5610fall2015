@@ -2,105 +2,228 @@
 <head>
     <title>Form Fields</title>
 </head>
+
+
 <body>
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<div class="container">
+
+<div class="row">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <text class="navbar-brand">Form Maker</text>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav><!-- /.container-fluid -->
+</div>
 
 
-    <div>
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation"><a href="forms.html">Forms</a></li>
-            <li role="presentation" class="active"><a href="#form-fields" aria-controls="form-fields" role="tab" data-toggle="tab">Fields</a></li>
+<div class="row">
+    <div class="col-sm-4">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="home.html">Home</a></li>
+            <li role="presentation"><a href="register.html">Register</a></li>
+            <li role="presentation"><a href="login.html">Login</a></li>
+            <li role="presentation"><a href="profile.html">Profile</a></li>
+            <li role="presentation"><a href="admin.html">Admin</a></li>
+            <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+
         </ul>
+    </div>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
+    <div class="col-sm-8">
+
+        <div class="container">
+
+
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="forms.html">Forms</a></li>
+                    <li role="presentation" class="active"><a href="#form-fields" aria-controls="form-fields" role="tab"
+                                                              data-toggle="tab">Fields</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <br class="tab-content">
 
 
                 <label for="firstName">
-                    First Name
+                    First Name:
                 </label>
-                    <br/>
-                    <input id="firstName" type="text" name="firstName"/>
-                    <label for="firstName">
-                        <div align="right">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input id="firstName" type="text" name="firstName"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="firstName">
+
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <br/>
-                    <label for="lastName">
-                        Last Name
-                    </label>
-                    <br/>
-                    <input id="lastName" type="text" name="lastName"/>
-                    <label for="lastName">
-                        <div align="right">
+
+                        </label>
+                    </div>
+                </div>
+
+                <label for="firstName">
+                    Last Name:
+                </label>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input id="lastName" type="text" name="lastName"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="lastName">
+
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <br/>
-                    <label for="dob">
-                        Date Of Birth
-                    </label>
-                    <br/>
-                    <input id="dob" type="date" name="dob"/>
-                    <label for="dob">
-                        <div align="right">
+
+                        </label>
+                    </div>
+                </div>
+
+                <label for="dob">
+                    Date Of Birth:
+                </label>
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <input id="dob" type="date" name="dob"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="dob">
+
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <br/>
-                    <label for="gender">
-                        Gender
-                    </label>
-                    <br/>
-                    <select id="gender" name="Gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                    <label for="gender">
-                        <div align="right">
+
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <label for="gender">
+                            Gender:
+                        </label>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label for="gender">
+
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <br/>
-                    <label>
-                        Roles
-                    </label>
-                    <br/>
-                    <input type="checkbox">Admin</input>
-                    <label>
-                        <div align="right">
+
+                        </label>
+                    </div>
+                </div>
+                <select id="gender" name="Gender">
+                    <option value="male">Male</option>
+                    <br>
+                    <option value="female">Female</option>
+                </select>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>
+                            Roles:
+                        </label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label>
+
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                        </div>
-                    </label>
-                    <br/>
-                    <input type="checkbox">Student</input>
-                    <br/>
-                    <input type="checkbox">User</input>
+
+                        </label>
+                    </div>
+
+                </div>
+
+                <input type="checkbox">Admin</input><br>
+                <input type="checkbox">Student</input><br>
+                <input type="checkbox">User</input>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>
+                            License Agreement:
+                        </label>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+
+                </div>
+
+
+                <input type="radio" name="yes" value="yes">Yes</br>
+                <input type="radio" name="no" value="no">No
+
+
+                <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>
+                            Add New Field:
+                        </label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </label>
+                    </div>
+                </div>
+                <select id="newField" name="newField">
+                    <option value="Single Line Text">Single Line Text</option>
+                    <option value="Date">Date</option>
+                    <option value="Dropdown">Dropdown</option>
+                    <option value="Checkboxes">Checkboxes</option>
+                    <option value="Radio Buttons">Radio Buttons</option>
+                    <option value="Paragraph Text Field">Paragraph Text Field</option>
+                </select>
 
 
                 </form>
-
 
 
             </div>
@@ -111,5 +234,14 @@
 
 
 </div>
+    </div>
+
+
+</div>
+
+
+
+
+
 </body>
 </html>
