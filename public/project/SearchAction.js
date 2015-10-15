@@ -16,24 +16,34 @@
 
         function searchButton()
         {
-            console.log("into the serach function!!")
+            console.log("into the serach function!!");
             var title = movieTitle.val();
 
             $.ajax({
-                headers: {
-                    "Authorization": "Basic " +'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw'
-                },
-                username:'blah',
-                password:'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw',
+                //headers: {
+                //    "Authorization": "Basic " +'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw'
+                //},
+                //username:'blah',
+                //password:'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw',
 
-                url: 'https://api.datamarket.azure.com/Bing/Search/v1/Web?$format=json&Query=%27mamadou%20sakho%27',
+                //url: 'https://api.datamarket.azure.com/Bing/Search/v1/Web?$format=json&Query=%27mamadou%20sakho%27',
+                //NY TIMES API KEY - 773e5ca29420b5aa4a84f40abbbefc05:19:73209776
+
+                url: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=obama&api-key=773e5ca29420b5aa4a84f40abbbefc05:19:73209776',
                 dataType: "jsonp",
                 jsonp : false,
-                jsonpCallback: 'jsonCallback',
+                jsonpCallback:'callBackFunction',
                 // contentType: 'application/json', -- you can't set content type for a <script> tag, this option does nothing for jsonp | KevinB
                 cache: 'true',
                 success: renderMoviesWithTemplate
             });
+
+            function callBackFunction(data)
+            {
+                console.log("inside call back");
+                console.log(typeof(data))
+                console.log(data);
+            }
         }
 
         function renderMoviesWithTemplate(movies)
