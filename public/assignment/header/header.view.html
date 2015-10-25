@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html ng-app="FormBuilderApp" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-    <script src="../app.js.js"></script>
-    <script src="header.controller.js"></script>
-</head>
-<body ng-controller="HeaderController">
+<header>
+    <nav class="pull-right">
+        <ul class="list-inline nav nav-pills">
+            <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('username') != -1}"><a href="#/username">Username</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/logout">Logout</a></li>
 
-<h1> inside header controller</h1>
-{{hello}}
-</body>
-</html>
+        </ul>
+    </nav>
+</header>

@@ -16,19 +16,23 @@
         <script src="config.js"></script>
         <script src="header/header.controller.js"></script>
         <script src="sidebar/sidebar.controller.js"></script>
+        <script src="register/register.controller.js"></script>
+        <script src="login/login.controller.js"></script>
     </head>
 
     <body>
-        <div class="container col-sm-8">
-            <h1>
-                Welcome!
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac quam vel libero porttitor porttitor. Duis cursus augue sapien, sit amet pellentesque erat aliquam eget. Sed eu tortor vestibulum, tempus lorem eu, dictum nunc. Nullam nulla tellus, porttitor eget rutrum ac, condimentum vitae eros. Aliquam vestibulum placerat tortor, ac tincidunt nisi pharetra vitae. Pellentesque aliquam diam eget mi accumsan facilisis. Curabitur lectus nulla, congue nec enim in, ornare placerat odio. Morbi facilisis dictum congue. Sed lacus arcu, tempus vel molestie volutpat, sodales ac elit.
 
-            </p>
-
+        <div ng-controller="HeaderController" class="col-sm-12">
+            <div ng-include="'/assignment/header/header.view.html'"></div>
         </div>
+
+        <div ng-controller="SidebarController" class="col-sm-2">
+            <div ng-include="'/assignment/sidebar/sidebar.view.html'"></div>
+        </div>
+
+        <div class="col-sm-10" ng-view>
+        </div>
+
     </div>
     </body>
 

@@ -1,9 +1,9 @@
 (function(){
     angular
         .module("FormBuilderApp")
-        .controller("HeaderController",HeaderController);
+        .controller("RegisterController",RegisterController);
 
-    function HeaderController($scope,$location)
+    function RegisterController($scope,$location, UserService)
     {
         console.log("Controller function called!");
         //$scope.hello = "hello from header controller";

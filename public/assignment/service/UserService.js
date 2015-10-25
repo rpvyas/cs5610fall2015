@@ -32,7 +32,7 @@
         function updateUser(id,user,callback)
         {
 
-            
+
         }
 
         function findUserByUsernameAndPassword(username,password,callback)
