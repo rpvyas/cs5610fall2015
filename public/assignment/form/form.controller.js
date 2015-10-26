@@ -13,6 +13,7 @@
         $scope.addForm = addForm;
         $scope.selectForm = selectForm;
         $scope.deleteForm = deleteForm;
+        $scope.updateForm = updateForm;
         $scope.tempforms=[];
         //$scope.forms = $rootScope.forms;
 
@@ -62,12 +63,14 @@
                 formId: guid(),
                 name:form.name
             };
+            form.name = "";
 
             FormService.createFormForUser(currentUserId,newForm,function(form){
                 console.log("form created");
             })
             //$scope.forms = getFormsForLoggedInUser($rootScope.user);
-            $scope.forms.push(newForm);
+            //$scope.forms.push(newForm);
+            setFormsForLoggedInUser($rootScope.user);
         }
 
         //function deleteForm(form)
@@ -81,20 +84,10 @@
 
         function deleteForm(index)
         {
-            var myforms = FormService.findAllFormsForUser($rootScope.user.id,function(forms){
-                console.log("in call back for findallformsforuser");
-
-                console.log(forms);
-                $scope.tempforms = forms;
-
-            });
-            console.log("***********");
-            console.log($scope.tempforms)
-            var formToDelete = $scope.tempforms[0];
-            FormService.deleteFormById(formToDelete.formId,function(forms){
+            FormService.deleteFormById($scope.forms[index].formId,function(forms){
                 $scope.forms = forms;
             });
-            $scope.tempforms = [];
+            //$scope.tempforms = [];
             //$scope.forms = getFormsForLoggedInUser($rootScope.user);
 
         }
@@ -107,20 +100,28 @@
             };
         }
 
-        function updateForm(form)
+        function updateForm(newform)
         {
-            console.log("add function called!");
+            console.log("update function called!");
             var currentUserId = $rootScope.user.id;
-            var newForm = {
-                userId:currentUserId,
-                formId: guid(),
-                name:form.name
-            };
+            var form = $scope.forms[$scope.selectedFormIndex];
 
-            FormService.createFormForUser(currentUserId,newForm,function(form){
-                console.log("form created");
+
+            //$scope.courses[$scope.selectedCourseIndex] = {
+            //    title: course.title,
+            //    seats: course.seats,
+            //    start: course.start
+            //};
+
+
+            FormService.updateFormById(form.formId,newform,function(form){
+                console.log("forms");
+                //$scope.forms = forms;
+
+                $scope.forms[$scope.selectedFormIndex] = form;
+
             })
-            $rootScope.forms.push(newForm);
+
         }
 
 

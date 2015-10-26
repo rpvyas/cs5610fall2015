@@ -20,9 +20,9 @@
 
         function createFormForUser(userId,form,callback)
         {
-            console.log("length of form now is "+ forms.length);
             form.userId = userId;
             forms.push(form);
+            console.log("length of form now is "+ forms.length);
             return callback(form);
         }
 
@@ -48,9 +48,12 @@
                 if(forms[i].formId == formId)
                 {
                     forms.splice(i, 1);
+                    console.log("length of array after delete "+ forms.length);
+                    console.log(forms);
                     return callback(forms);
                 }
             }
+
             return callback(null);
 
 
