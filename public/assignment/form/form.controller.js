@@ -13,6 +13,7 @@
         $scope.addForm = addForm;
         $scope.selectForm = selectForm;
         $scope.deleteForm = deleteForm;
+        $scope.tempforms=[];
         //$scope.forms = $rootScope.forms;
 
         setFormsForLoggedInUser($rootScope.user);
@@ -80,15 +81,20 @@
 
         function deleteForm(index)
         {
-            var forms = FormService.findAllFormsForUser($rootScope.user.id,function(forms){
+            var myforms = FormService.findAllFormsForUser($rootScope.user.id,function(forms){
                 console.log("in call back for findallformsforuser");
-                console.log(forms);
-            });
 
-            var formToDelete = forms[index];
+                console.log(forms);
+                $scope.tempforms = forms;
+
+            });
+            console.log("***********");
+            console.log($scope.tempforms)
+            var formToDelete = $scope.tempforms[0];
             FormService.deleteFormById(formToDelete.formId,function(forms){
                 $scope.forms = forms;
             });
+            $scope.tempforms = [];
             //$scope.forms = getFormsForLoggedInUser($rootScope.user);
 
         }

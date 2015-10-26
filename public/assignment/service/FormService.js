@@ -20,6 +20,7 @@
 
         function createFormForUser(userId,form,callback)
         {
+            console.log("length of form now is "+ forms.length);
             form.userId = userId;
             forms.push(form);
             return callback(form);
