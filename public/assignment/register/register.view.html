@@ -1,49 +1,38 @@
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
+<title>Register</title>
 
-<div class="row">
-
-
-
-    <div class="container col-sm-8">
+    <div ng-controller="RegisterController" class="container col-sm-8">
 
         <h1>Register</h1>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="Username" class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Username" placeholder="Username">
+                    <input ng-model="user.username" type="text" class="form-control" id="Username" placeholder="Username">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    <input ng-model="user.password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
                 <label for="verifyPassword4" class="col-sm-2 control-label">Verify Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="verifyPassword4" placeholder="Verify Password">
+                    <input ng-model="user.verify_password" type="password" class="form-control" id="verifyPassword4" placeholder="Verify Password">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email1" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email1" placeholder="Email">
+                    <input ng-model="user.email" type="email" class="form-control" id="email1" placeholder="Email">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button formaction="profile.html" class="btn btn-default">Register</button>
+                    <a ng-click=register(user) role="button" class="btn btn-default form-control">Register</a>
                 </div>
             </div>
         </form>
     </div>
-</div>
-</body>
-</html>

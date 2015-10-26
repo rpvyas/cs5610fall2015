@@ -5,8 +5,7 @@
             $routeProvider
                 //Root path
                 .when("/", {
-                    templateUrl: "courseList/courseList.view.html",
-                    controller: "courseList.controller"
+                    templateUrl: "home/home.view.html"
                 })
                 .when("/register",
                 {
@@ -25,25 +24,23 @@
                     controller: "LoginController"
                 })
 
-
-
-
-
                 .when("/profile",
                 {
-                    templateUrl: "register/register.view.html",
-                    controller: "RegisterController"
+                    templateUrl: "profile/profile.view.html",
+                    controller: "ProfileController"
                 })
-                .when("/admin",
+
+                .when("/form",
                 {
-                    templateUrl: "register/register.view.html",
-                    controller: "RegisterController"
+                    templateUrl: "form/form.view.html"
                 })
-                .when("/forms",
-                {
-                    templateUrl: "register/register.view.html",
-                    controller: "RegisterController"
+
+                .otherwise({
+                    redirectTo: "/home"
                 })
+
+
+
 
 
 

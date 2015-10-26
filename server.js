@@ -1,4 +1,5 @@
 var express = require('express');
+var guid = require('guid');
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
