@@ -23,13 +23,13 @@
                 //headers: {
                 //    "Authorization": "Basic " +'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw'
                 //},
-                //username:'blah',
+                username:'blah',
                 //password:'hdhkQaJSBrjmHdAhn++vHAzqbaEkFcpuLje8tgXlgSw',
-
-                //url: 'https://api.datamarket.azure.com/Bing/Search/v1/Web?$format=json&Query=%27mamadou%20sakho%27',
+                password:'PSR4oDzz+si7Nd/7Ea21qz7PMgcRx5+Qogu4TB5jR5w=',
+                url: 'https://api.datamarket.azure.com/Bing/Search/v1/Web?$format=json&Query=%27mamadou%20sakho%27',
                 //NY TIMES API KEY - 773e5ca29420b5aa4a84f40abbbefc05:19:73209776
 
-                url: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=obama&api-key=773e5ca29420b5aa4a84f40abbbefc05:19:73209776',
+                //url: 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=obama&api-key=773e5ca29420b5aa4a84f40abbbefc05:19:73209776',
                 dataType: "jsonp",
                 jsonp : false,
                 jsonpCallback:'callBackFunction',
