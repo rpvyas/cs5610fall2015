@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Timeline</title>
+</head>
+<body>
+
+<div class="row">
+    <div ng-controller="TimelineController" class="container col-sm-8">
+
+
+        <div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" content="active" class="tab-pane active" id="forms">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <!--<th>Category</th>-->
+                            <!--<th>Source</th>-->
+                            <!--<th></th>-->
+                            <!--<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">Action</span></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat="item in newsitems">
+                            <td>
+                                {{item.category}}
+                            </td>
+                            <td>
+                                {{item.source}}
+                            </td>
+                            <td>
+                                {{item.headline}}
+                            </td>
+                            <td>
+                                <button class="btn btn-info">
+                                    Happy
+                                </button>
+                                <button class="btn btn-success">
+                                    Inspiring
+                                </button>
+                                <button class="btn btn-warning">
+                                    Sad
+                                </button>
+                                <button class="btn btn-default">
+                                    Exciting
+                                </button>
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>
