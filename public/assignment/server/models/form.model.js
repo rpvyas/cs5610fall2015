@@ -11,7 +11,10 @@ module.exports = function(app)
         FindById : FindById,
         Update : Update,
         Delete : Delete,
-
+        FindFormFieldById : FindFormFieldById,
+        AddFormField : AddFormField,
+        UpdateFormField : UpdateFormField,
+        DeleteFormField : DeleteFormField
     };
     return api;
 
@@ -84,6 +87,79 @@ module.exports = function(app)
         }
         console.log("form "+ title + " not found");
         return null;
+    }
+
+
+    function FindFormFieldById(formId,fieldId)
+    {
+        for(var i=0; i<forms.length; i++)
+        {
+            if (forms[i].id === formId)
+            {
+                for (var j=0; j < forms[i].fields.length; j++)
+                {
+                    if (forms[i].fields[j].id === fieldId)
+                    {
+                        return forms[i].fields[j];
+                    }
+                }
+            }
+        }
+        console.log("form field not found");
+        return null;
+    }
+
+    function AddFormField(formId, field)
+    {
+        field.id = guid();
+        for(var i=0; i<forms.length; i++)
+        {
+            if (formId === forms[i].id)
+            {
+                if(forms[i].fields == null)
+                {
+                    forms[i].fields = [];
+                }
+                forms[i].fields.push(field);
+                return forms[i].fields;
+            }
+        }
+    }
+
+    function UpdateFormField(formId, fieldId, field)
+    {
+        for(var i=0; i<forms.length; i++)
+        {
+            if(forms[i].id === formId)
+            {
+                for(var j = 0; j<forms[i].fields.length; j++)
+                {
+                    if(forms[i].fields[j].id === fieldId)
+                    {
+                        forms[i].fields[j] = field;
+                    }
+                }
+                return forms[i].fields;
+            }
+        }
+    }
+
+    function DeleteFormField(formId, fieldId)
+    {
+        for(var i=0; i<forms.length; i++)
+        {
+            if(forms[i].id == formId)
+            {
+                for(var j = 0; j<forms[i].fields.length; j++)
+                {
+                    if(forms[i].fields[j].id === fieldId)
+                    {
+                        forms[i].fields.splice(j,1);
+                    }
+                }
+                return forms[i].fields;
+            }
+        }
     }
 
 
