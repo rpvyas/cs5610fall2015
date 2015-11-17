@@ -45,9 +45,10 @@
             }
         }
 
-        function navigateToFields(index)
+        function navigateToFields(formId)
         {
-            var path = "/user/" + $rootScope.user.id + "/form/" + $scope.forms[index].id + "/fields";
+            console.log("Inside navigate function");
+            var path = "/user/" + $rootScope.user.id + "/form/" + formId + "/fields";
             console.log(path);
             $location.path(path);
         }
@@ -91,6 +92,7 @@
         {
             console.log("inside select form");
             $scope.selectedFormId = $scope.forms[index].id;
+            $rootScope.selectedFormId = selectedFormId;
             $scope.formName = $scope.forms[index].title;
             $scope.index = index;
         }

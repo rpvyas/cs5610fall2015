@@ -5,8 +5,9 @@
 
     function FieldController($scope, FieldService, $rootScope, $location, $routeParams)
     {
+        console.log("inside field controller");
         var formId = $routeParams.formId;
-
+        $scope.selectedFormId = formId;
         FieldService.getFieldsForForm(formId)
             .then(function(fields)
             {

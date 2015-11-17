@@ -13,7 +13,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#form" aria-controls="forms" role="tab" data-toggle="tab">Forms</a></li>
-                <li role="presentation" class="active"><a ng-href="#/user/{{user.id}}/form/{{selectedForm.id}}/fields" ng->Fields</a></li>
+                <li role="presentation" class="active"><a ng-click="navigateToFields(selectedFormId)">Fields</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -53,7 +53,7 @@
                             </td>
                         </tr>
                         <tr ng-repeat="form in forms | orderBy:predicate:reverse">
-                            <td><a ng-click="navigateToFields($index)">{{form.title}}</a></td>
+                            <td><a ng-click="navigateToFields(form.id)">{{form.title}}</a></td>
                             <td>
                                 <button ng-click="deleteForm(form.id)" class="btn btn-danger">
                                     <scan class="glyphicon glyphicon-remove"></scan>
