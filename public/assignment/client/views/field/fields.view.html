@@ -1,11 +1,12 @@
 <div class="container" ng-controller="FormController">
 
-     <ul class="nav nav-tabs">
-         <li role="presentation" class="active"><a href="#form" aria-controls="forms" role="tab" data-toggle="tab">Forms</a></li>
-         <li role="presentation" class="active"><a ng-click="navigateToFields(selectedFormId)">Fields</a></li>
-    </ul>
+
 
     <div class="tab-content" ng-controller = "FieldController">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#form" aria-controls="forms" role="tab" data-toggle="tab">Forms</a></li>
+            <li role="presentation" class="active"><a ng-click="navigateToFields(selectedFormId)">Fields</a></li>
+        </ul>
         <div id="fields">
             <div class="form-horizontal">
                 <div ng-repeat = "field in fields">
