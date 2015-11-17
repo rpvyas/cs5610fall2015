@@ -88,5 +88,16 @@
                 });
             return defer.promise;
         }
+
+        function cloneField(formId, field)
+        {
+            var defer = $q.defer();
+            var url = "/api/assignment/form/" + formId + "/field";
+            $http.post(url,field)
+                .success(function(response){
+                    defer.resolve(response);
+                });
+            return defer.promise;
+        }
     }
 })();

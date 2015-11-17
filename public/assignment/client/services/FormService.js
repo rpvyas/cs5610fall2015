@@ -30,8 +30,9 @@
             return defer.promise;
         }
 
-        function findAllFormsForUser(userId,callback)
+        function findAllFormsForUser(userId)
         {
+            console.log("Inside findAllFormsForUser");
             var defer = $q.defer();
             var url = "/api/assignment/user/" + userId + "/form";
             console.log(url);

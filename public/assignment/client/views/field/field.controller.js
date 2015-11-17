@@ -1,87 +1,100 @@
+"use strict";
 (function () {
-    angular
-        .module("FormBuilderApp")
+    angular.module("FormBuilderApp")
         .controller("FieldController", FieldController);
-    function FieldController($scope, $location, FormService, $rootScope,FieldService,$routeParams)
+
+    function FieldController($scope, FieldService, $rootScope, $location, $routeParams)
     {
+        var formId = $routeParams.formId;
 
-        $scope.$location = $location;
-        $scope.user = $rootScope.user;
-        $scope.fields = [];
-        $scope.newFieldType = "";
-
-        $scope.formID = $routeParams.formId;
-        $scope.userID = $routeParams.userId;
-
-
-        $scope.addFienld = addField;
-        $scope.deleteField = deleteField;
-
-
-        getFields();
-        function getFields()
-        {
-            if ($scope.selectedForm)
+        FieldService.getFieldsForForm(formId)
+            .then(function(fields)
             {
-                FieldService.getFieldsForForm($scope.selectedForm.id)
-                    .then(function(fields)
-                    {
-                        $scope.fields = fields;
-                    })
-            }
-            else
-            {
-                console.log("no form selected");
-            }
-        };
+                console.log(fields);
+                $scope.fields = fields;
+            });
 
-        function clone(source)
-        {
-            if (source && typeof source == "object")
-            {
-                return JSON.parse(JSON.stringify(source));
-            } else
-            {
-                return null;
-            }
-        }
-
-
+        $scope.addField = addField;
+        $scope.removeField = removeField;
+        $scope.cloneField = cloneField;
 
         function addField(fieldType)
         {
-            if (fieldType)
+            var textField = {"id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+            var textAreaField = {"id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+            var dateField = {"id": null, "label": "New Date Field", "type": "DATE"};
+
+            var dropDownField = {"id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                {"label": "Option 1", "value": "OPTION_1"},
+                {"label": "Option 2", "value": "OPTION_2"},
+                {"label": "Option 3", "value": "OPTION_3"}
+            ]};
+
+            var checkBoxField = {"id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                {"label": "Option A", "value": "OPTION_A"},
+                {"label": "Option B", "value": "OPTION_B"},
+                {"label": "Option C", "value": "OPTION_C"}
+            ]};
+
+            var radioBoxField = {"id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                {"label": "Option X", "value": "OPTION_X"},
+                {"label": "Option Y", "value": "OPTION_Y"},
+                {"label": "Option Z", "value": "OPTION_Z"}
+            ]};
+
+            var field;
+            if(fieldType === "Single Line Text Field")
             {
-                console.log("Field type is " + fieldType);
-                $scope.newField.type = fieldType;
-                var newFieldObject = clone($scope.newField[fieldType]);
-                $scope.fields.push(newFieldObject);
-
-                FieldService.createFieldForForm($scope.selectedForm.id, newFieldObject)
-                    .then(function(fields)
-                    {
-                        $scope.fields = fields;
-                    })
+                field = textField;
             }
-        };
+            else if(fieldType === "Multi Line Text Field")
+            {
+                field = textAreaField;
+            }
+            else if(fieldType === "Date Field")
+            {
+                field = dateField;
+            }
+            else if(fieldType === "Dropdown Field")
+            {
+                field = dropDownField;
+            }
+            else if(fieldType === "CheckBoxes Field")
+            {
+                field = checkBoxField;
+            }
+            else if(fieldType === "Radio Buttons Field")
+            {
+                field = radioBoxField;
+            }
 
+            FieldService.createFieldForForm(formId, field)
+                .then(function(fields)
+                {
+                    console.log(fields);
+                    $scope.fields = fields;
+                });
+        }
 
-        function deleteField(field)
+        function removeField(field)
         {
-            $scope.error = "";
-            if (field){
-                FieldService.deleteFieldFromForm($scope.selectedForm.id, field.id)
-                    .then(function(remainingFields){
-                        $scope.fields = remainingFields;
-                    })
-                    .catch(function(error){
-                        $scope.error = error;
-                    });
-            } else {
-                $scope.error = "Please select a field type to delete";
-            }
-        };
+            FieldService.deleteFieldFromForm(formId, field.id)
+                .then(function(fields)
+                {
+                    console.log(fields);
+                    $scope.fields = fields;
+                });
+        }
 
+        function cloneField(field)
+        {
+            FieldService.cloneField(formId, field)
+                .then(function(fields)
+                {
+                    console.log(fields);
+                    $scope.fields = fields;
+                });
+        }
 
     }
 })();

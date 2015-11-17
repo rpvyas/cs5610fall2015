@@ -21,6 +21,7 @@ module.exports = function(app,model)
 
     app.get("/api/assignment/user/:userId/form", function(req,res)
     {
+        console.log("api response for find forms by userid");
         var userId = req.params.userId;
         console.log(userId);
         res.json(model.FindFormsByUserId(userId));

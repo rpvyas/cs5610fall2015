@@ -9,7 +9,7 @@
                 })
                 .when("/register",
                 {
-                    templateUrl: "register/register.view.html",
+                    templateUrl: "views/register/register.view.html",
                     //controller: "RegisterController"
                 })
 
@@ -37,19 +37,12 @@
 
                 .when("/user/:userId/form/:formId/fields",
                 {
-                    templateUrl: "views/field/field.view.html",
+                    templateUrl: "views/field/fields.view.html",
                 })
 
                 .otherwise({
                     redirectTo: "/home"
                 })
-
-
-
-
-
-
-
 
 
         });

@@ -14,10 +14,23 @@ module.exports = function(app)
         FindFormFieldById : FindFormFieldById,
         AddFormField : AddFormField,
         UpdateFormField : UpdateFormField,
-        DeleteFormField : DeleteFormField
+        DeleteFormField : DeleteFormField,
+        FindFormsByUserId : FindFormsByUserId
     };
     return api;
 
+    function FindFormsByUserId(userId)
+    {
+        var userForms = [];
+        for(var i=0; i<forms.length; i++)
+        {
+            if(forms[i].userId == userId)
+            {
+                userForms.push(forms[i]);
+            }
+        }
+        return userForms;
+    }
 
     function Create(form, userId)
     {
