@@ -5,7 +5,7 @@
             $routeProvider
                 //Root path
                 .when("/", {
-                    templateUrl: "home/home.view.html"
+                    templateUrl: "views/home/home.view.html"
                 })
                 .when("/register",
                 {
