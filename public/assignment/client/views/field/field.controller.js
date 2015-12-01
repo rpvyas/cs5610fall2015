@@ -79,7 +79,7 @@
 
         function removeField(field)
         {
-            FieldService.deleteFieldFromForm(formId, field.id)
+            FieldService.deleteFieldFromForm(formId, field._id)
                 .then(function(fields)
                 {
                     console.log(fields);

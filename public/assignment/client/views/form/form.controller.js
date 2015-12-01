@@ -11,7 +11,7 @@
         setFormsForLoggedInUser($rootScope.user);
         function setFormsForLoggedInUser(user)
         {
-            FormService.findAllFormsForUser(user.id)
+            FormService.findAllFormsForUser(user._id)
                 .then(function(forms)
                 {
                     $scope.forms = forms;
@@ -32,10 +32,10 @@
             console.log($scope.formName);
             if(!angular.isUndefined($scope.formName))
             {
-                FormService.createFormForUser($rootScope.user.id, form)
+                FormService.createFormForUser($rootScope.user._id, form)
                     .then(function(forms)
                     {
-                        FormService.findAllFormsForUser($rootScope.user.id)
+                        FormService.findAllFormsForUser($rootScope.user._id)
                             .then(function(forms)
                             {
                                 $scope.forms = forms;
@@ -48,7 +48,7 @@
         function navigateToFields(formId)
         {
             console.log("Inside navigate function");
-            var path = "/user/" + $rootScope.user.id + "/form/" + formId + "/fields";
+            var path = "/user/" + $rootScope.user._id + "/form/" + formId + "/fields";
             console.log(path);
             $location.path(path);
         }
@@ -59,7 +59,7 @@
             FormService.deleteFormById(formId)
                 .then(function (forms)
                 {
-                    FormService.findAllFormsForUser($rootScope.user.id)
+                    FormService.findAllFormsForUser($rootScope.user._id)
                         .then(function (forms)
                         {
                             console.log(forms);
@@ -77,7 +77,7 @@
                     var newForm =
                     {
                         title: $scope.formName,
-                        userId: $rootScope.user.id
+                        userId: $rootScope.user._id
                     };
                     FormService.updateFormById(selectedFormId, newForm).then(function (updatedForm)
                     {
@@ -91,8 +91,9 @@
         function selectForm(index)
         {
             console.log("inside select form");
-            $scope.selectedFormId = $scope.forms[index].id;
-            $rootScope.selectedFormId = selectedFormId;
+            console.log("selected id "+ $scope.forms[index]._id);
+            $scope.selectedFormId = $scope.forms[index]._id;
+            $rootScope.selectedFormId = $scope.selectedFormId;
             $scope.formName = $scope.forms[index].title;
             $scope.index = index;
         }

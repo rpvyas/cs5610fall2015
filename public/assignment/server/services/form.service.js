@@ -1,50 +1,62 @@
 "use strict";
 
-//GET /api/assignment/user/:userId/form
-//returns an array of forms belonging to a user whose id is equal to the userId path parameter
-//GET /api/assignment/form/:formId
-//returns a form object whose id is equal to the formId path parameter
-//DELETE /api/assignment/form/:formId
-//removes a form object whose id is equal to the formId path parameter
-//POST /api/assignment/user/:userId/form
-//creates a new form whose properties are the same as the form object embedded in the HTTP request's body and the form belongs to a user whose id is equal to the userId path parameter. The form object's id is initially null since it is a new record. The id of the new form should be set dynamically using Node.js guid or node-uuid libraries. These will eventually be set by the database when they are inserted into a collection
-//PUT /api/assignment/form/:formId
-//updates a form object whose id is equal to the formId path parameter so that its properties are the same as the property values of the form object embedded in the request's body
+module.exports = function(app,model){
 
-module.exports = function(app,model)
-{
+    app.post("/api/assignment/user/:userId/form", CreateForm);
+    app.get("/api/assignment/user/:userId/form", GetForms);
+    app.get("/api/assignment/form/:formId", GetForm);
+    app.put("/api/assignment/form/:formId",UpdateForm);
+    app.delete("/api/assignment/form/:formId", DeleteForm);
+    app.get("/api/assignment/form?formTitle=formTitle", GetFormByTitle);
 
-    app.post("/api/assignment/user/:userId/form", function(req,res)
-    {
-        res.json(model.Create(req.body,req.params.userId));
-    });
+    function CreateForm(req,res){
+        model
+            .Create(req.body, req.params.userId)
+            .then(function(form) {
+                res.json(form);
+            });
+        //res.json(model.Create(req.body,req.params.userId));
+    }
 
-    app.get("/api/assignment/user/:userId/form", function(req,res)
-    {
-        console.log("api response for find forms by userid");
-        var userId = req.params.userId;
-        console.log(userId);
-        res.json(model.FindFormsByUserId(userId));
-    });
+    function GetForms(req, res){
+        console.log("forms.service.server.js: GetForms: " + req.params.userId);
+        model
+            .FindFormsByUserId(req.params.userId)
+            .then(function(forms) {
+                res.json(forms);
+            });
+    }
 
-    app.get("/api/assignment/form/:formId", function(req,res)
-    {
-        res.json(model.FindById(req.params.formId));
-    });
+    function GetForm(req, res){
+        model
+            .FindById(req.params.formId)
+            .then(function(form) {
+                res.json(form);
+            });
+    }
 
-    app.get('/api/assignment/form', function(req,res)
-    {
+    function GetFormByTitle(req, res){
         var formTitle = req.param("formTitle");
-        res.json(model.FindFormByTitle(formTitle));
-    });
+        model
+            .FindFormByTitle(formTitle)
+            .then(function(form) {
+                res.json(form);
+            });
+    }
 
-    app.put("/api/assignment/form/:formId",function(req,res)
-    {
-        res.json(model.Update(req.params.formId,req.body));
-    });
+    function UpdateForm(req, res){
+        model
+            .Update(req.params.formId, req.body)
+            .then(function(updatedForm) {
+                res.json(updatedForm);
+            });
+    }
 
-    app.delete("/api/assignment/form/:formId",function(req,res)
-    {
-        res.json(model.Delete(req.params.formId));
-    });
+    function DeleteForm(req, res){
+        model
+            .Delete(req.params.formId)
+            .then(function(status) {
+                res.json(status);
+            });
+    }
 };

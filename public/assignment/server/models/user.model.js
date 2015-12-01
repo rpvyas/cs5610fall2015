@@ -95,7 +95,7 @@ module.exports = function(mongoose, db)
                 userToUpdate.password = user.password;
                 userToUpdate.email = user.email;
                 userToUpdate.save(function(err, document) {
-                    
+
                     deferred.resolve(document);
                 });
 
