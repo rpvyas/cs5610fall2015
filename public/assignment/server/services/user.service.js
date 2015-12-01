@@ -56,6 +56,8 @@ module.exports = function(app, model){
     }
 
     function UpdateUser(req,res){
+        console.log("Inside server/user.service");
+        console.log("user id from the params "+ req.params.id);
         model
             .Update(req.params.id, req.body)
             .then(function(user) {

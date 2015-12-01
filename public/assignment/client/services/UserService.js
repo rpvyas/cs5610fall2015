@@ -83,9 +83,12 @@
             return defer.promise;
         }
 
-        function updateUser(user, userId) {
+        function updateUser(user, userId)
+        {
+            console.log("****************MAPPED CALL TO UPDATE USER***************");
             var defer = $q.defer();
             var url = '/api/assignment/user/'+ userId;
+            console.log("**user id is "+ userId);
             $http.put(url, user)
                 .success(function(response){
                     defer.resolve(response);

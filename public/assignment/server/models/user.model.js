@@ -19,17 +19,17 @@ module.exports = function(mongoose, db)
     };
     return api;
 
-    function guid()
-    {
-        function s4()
-        {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
+    //function guid()
+    //{
+    //    function s4()
+    //    {
+    //        return Math.floor((1 + Math.random()) * 0x10000)
+    //            .toString(16)
+    //            .substring(1);
+    //    }
+    //    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    //        s4() + '-' + s4() + s4() + s4();
+    //}
 
     //function Create(user)
     //{
@@ -82,6 +82,7 @@ module.exports = function(mongoose, db)
     function Update(id, user){
         console.log("Inside update function*****************888888");
         var deferred = q.defer();
+        console.log("id of the user to be updated is " + id);
         UserModel.findById(id, function(err, userToUpdate) {
             if(err) {
 
@@ -94,7 +95,7 @@ module.exports = function(mongoose, db)
                 userToUpdate.password = user.password;
                 userToUpdate.email = user.email;
                 userToUpdate.save(function(err, document) {
-                    console.log("user updated ----"+ userToUpdate.firstName)
+                    
                     deferred.resolve(document);
                 });
 
