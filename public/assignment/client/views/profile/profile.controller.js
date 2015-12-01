@@ -15,7 +15,7 @@
         $scope.update = update;
         function update(user)
         {
-            console.log("inside register function");
+            console.log("inside update function");
             console.log("username "+ user.username );
 
 

@@ -1,3 +1,38 @@
+//'use strict';
+//(function(){
+//    angular
+//        .module("FormBuilderApp")
+//        .controller("RegisterController", RegisterController);
+//
+//    function RegisterController($scope, $location, $rootScope, UserService) {
+//        $scope.register = register;
+//
+//        function register() {
+//            if($scope.username, $scope.password, $scope.verifyPassword, $scope.email) {
+//                if ($scope.password !== $scope.verifyPassword){
+//                    $scope.error = "Both the password and verify password fields should match";
+//                } else {
+//                    var newUser = {
+//                        username: $scope.username,
+//                        password: $scope.password,
+//                        email: $scope.email
+//                    };
+//                    UserService.createUser(newUser)
+//                        .then(function(newlyCreatedUser) {
+//                            //console.log(newlyCreatedUser);
+//
+//                            //update rootscope user
+//                            $rootScope.user = newlyCreatedUser;
+//
+//                            //Navigate to profile
+//                            $location.path("/profile");
+//                        });
+//                }
+//            }
+//        }
+//    }
+//})();
+'use strict' ;
 (function(){
     angular
         .module("FormBuilderApp")
@@ -26,27 +61,33 @@
             console.log("inside register function");
             console.log("username "+ user.username );
             var newUser = {
-                id: guid(),
                 username:user.username,
                 password:user.password,
-                firstname:"",
-                lastname:"",
                 email:user.email
             };
 
-            UserService.createUser(newUser, function(user){
-                console.log("inside create user call back");
+            //UserService.createUser(newUser, function(user){
+            //    console.log("inside create user call back");
+            //
+            //    console.log(user.id);
+            //    console.log(user.username);
+            //})
 
-                console.log(user.id);
-                console.log(user.username);
-            })
+            //console.log("current url ");
+            //console.log($location.url);
+            //$rootScope.user = newUser;
+            //$location.path('/profile');
 
-            console.log("current url ");
-            console.log($location.url);
-            $rootScope.user = newUser;
-            $location.path('/profile');
+            UserService.createUser(newUser)
+                .then(function(newlyCreatedUser) {
+                    //console.log(newlyCreatedUser);
 
+                    //update rootscope user
+                    $rootScope.user = newlyCreatedUser;
 
+                    //Navigate to profile
+                    $location.path("/profile");
+                });
         }
     }
 
