@@ -53,7 +53,7 @@
                             </td>
                         </tr>
                         <tr ng-repeat="form in forms | orderBy:predicate:reverse">
-                            <td><a ng-click="navigateToFields(form.id)">{{form.title}}</a></td>
+                            <td><a ng-click="navigateToFields(form._id)">{{form.title}}</a></td>
                             <td>
                                 <button ng-click="deleteForm(form._id)" class="btn btn-danger">
                                     <scan class="glyphicon glyphicon-remove"></scan>

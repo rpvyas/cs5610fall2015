@@ -113,10 +113,13 @@ module.exports = function(mongoose, db){
     }
 
     function AddFormField(formId, field){
-        console.log(field);
+        console.log("inside model function");
+        //console.log(field);
         var deferred = q.defer();
+        console.log(" form id is "+ formId);
         FormModel.findById(formId, function(err, form) {
             if(err) {
+                console.log(" first error ");
                 deferred.reject(err);
             } else {
                 var formFields = form.fields;
@@ -129,8 +132,9 @@ module.exports = function(mongoose, db){
                 console.log("updatedForm");
                 console.log(form);
                 form.save(function(err, document) {
-                    console.log(document);
+                    //console.log(document);
                     if(err) {
+                        console.log("**ERROR ***"+ err);
                         deferred.reject(err);
                     } else {
                         deferred.resolve(document);

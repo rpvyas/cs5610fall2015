@@ -32,11 +32,13 @@
 
         function createFieldForForm(formId, field)
         {
+            console.log("Create field function called");
             var defer = $q.defer();
             var url = "/api/assignment/form/" + formId + "/field";
             $http.post(url, field)
                 .success(function(response)
                 {
+                    console.log("**INSIDE SUCCESS***");
                     defer.resolve(response);
                 });
             return defer.promise;
