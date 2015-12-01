@@ -7,7 +7,8 @@ module.exports = function(mongoose, db){
     var FormSchema = require('./form.schema.js')(mongoose);
     var FormModel  = mongoose.model("FormModel", FormSchema);
 
-    var api = {
+    var api =
+    {
         Create : Create,
         FindAll : FindAll,
         FindFormByTitle : FindFormByTitle,
@@ -23,76 +24,113 @@ module.exports = function(mongoose, db){
     };
     return api;
 
-    function Create(form, userId){
+    function Create(form, userId)
+    {
         var deferred = q.defer();
         form.userId = userId;
         form.fields = [];
-        FormModel.create(form, function(err, createdForm) {
-            if(err) {
+        FormModel.create(form, function(err, createdForm)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(createdForm);
             }
         });
         return deferred.promise;
     }
 
-    function FindAll(){
+    function FindAll()
+    {
         var deferred = q.defer();
-        FormModel.find(function(err, forms) {
-            if(err) {
+        FormModel.find(function(err, forms)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(forms);
             }
         });
         return deferred.promise;
     }
 
-    function FindFormByTitle(title){
+    function FindFormByTitle(title)
+    {
         var deferred = q.defer();
-        FormModel.findOne({title: title}, function(err, form) {
-            if(err) {
+        FormModel.findOne({title: title}, function(err, form)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(form);
             }
         });
         return deferred.promise;
     }
 
-    function FindFormsByUserId(userId){
+    function FindFormsByUserId(userId)
+    {
         var deferred = q.defer();
-        FormModel.find({userId: userId}, function(err, forms) {
-            if(err) {
+        FormModel.find({userId: userId}, function(err, forms)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(forms);
             }
         });
         return deferred.promise;
     }
 
-    function FindById(id){
+    function FindById(id)
+    {
         var deferred = q.defer();
-        FormModel.findById(id, function(err, form) {
-            if(err) {
+        FormModel.findById(id, function(err, form)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(form);
             }
         });
         return deferred.promise;
     }
 
-    function Update(id, form){
+    function Update(id, form)
+    {
         var deferred = q.defer();
-        FormModel.findById(id, function(err, formToUpdate) {
-            if(err) {
+        FormModel.findById(id, function(err, formToUpdate)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 formToUpdate.title = form.title;
-                formToUpdate.save(function(err, updatedForm) {
+                formToUpdate.save(function(err, updatedForm)
+                {
                     deferred.resolve(updatedForm);
                 });
             }
@@ -100,43 +138,50 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function Delete(id){
+    function Delete(id)
+    {
         var deferred = q.defer();
-        FormModel.remove({_id:id}, function(err, status) {
-            if(err) {
+        FormModel.remove({_id:id}, function(err, status)
+        {
+            if(err)
+            {
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 deferred.resolve(status);
             }
         });
         return deferred.promise;
     }
 
-    function AddFormField(formId, field){
+    function AddFormField(formId, field)
+    {
         console.log("inside model function");
         //console.log(field);
         var deferred = q.defer();
         console.log(" form id is "+ formId);
-        FormModel.findById(formId, function(err, form) {
-            if(err) {
+        FormModel.findById(formId, function(err, form)
+        {
+            if(err)
+            {
                 console.log(" first error ");
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 var formFields = form.fields;
-                console.log("Before");
-                console.log(formFields);
                 formFields.push(field);
-                console.log("After");
-                console.log(formFields);
                 form.fields = formFields;
-                console.log("updatedForm");
-                console.log(form);
-                form.save(function(err, document) {
-                    //console.log(document);
-                    if(err) {
+                form.save(function(err, document)
+                {
+                    if(err)
+                    {
                         console.log("**ERROR ***"+ err);
                         deferred.reject(err);
-                    } else {
+                    }
+                    else
+                    {
                         deferred.resolve(document);
                     }
                 });
@@ -145,15 +190,23 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function FindField(formId, fieldId){
+    function FindField(formId, fieldId)
+    {
         var deferred = q.defer();
-        FormModel.findById(formId, function(err, form){
-            if(err) {
+        FormModel.findById(formId, function(err, form)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 var formFields = form.fields;
-                for(var i=0; i<formFields.length; i++){
-                    if(formFields[i]._id == fieldId){
+                for(var i=0; i<formFields.length; i++)
+                {
+                    if(formFields[i]._id == fieldId)
+                    {
                         deferred.resolve(formFields[i]);
                     }
                 }
@@ -162,24 +215,36 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function UpdateFormField(formId, fieldId, field){
+    function UpdateFormField(formId, fieldId, field)
+    {
         var deferred = q.defer();
-        FormModel.findById(formId, function(err, form){
-            if(err) {
+        FormModel.findById(formId, function(err, form)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 var formFields = form.fields;
-                for(var i=0; i<formFields.length; i++){
-                    if(formFields[i]._id == fieldId){
+                for(var i=0; i<formFields.length; i++)
+                {
+                    if(formFields[i]._id == fieldId)
+                    {
                         formFields[i] = field;
                         break;
                     }
                 }
                 form.fields = formFields;
-                form.save(function(err, updatedForm) {
-                    if(err) {
+                form.save(function(err, updatedForm)
+                {
+                    if(err)
+                    {
+                        console.log("**ERROR ***"+ err);
                         deferred.reject(err);
-                    } else {
+                    } else
+                    {
                         deferred.resolve(updatedForm);
                     }
                 });
@@ -188,23 +253,35 @@ module.exports = function(mongoose, db){
         return deferred.promise;
     }
 
-    function DeleteFormField(formId, fieldId){
+    function DeleteFormField(formId, fieldId)
+    {
         var deferred = q.defer();
-        FormModel.findById(formId, function(err, form){
-            if(err) {
+        FormModel.findById(formId, function(err, form)
+        {
+            if(err)
+            {
+                console.log("**ERROR ***"+ err);
                 deferred.reject(err);
-            } else {
+            }
+            else
+            {
                 var formFields = form.fields;
-                for(var i=0; i<formFields.length; i++){
-                    if(formFields[i]._id == fieldId){
+                for(var i=0; i<formFields.length; i++)
+                {
+                    if(formFields[i]._id == fieldId)
+                    {
                         formFields.splice(i,1);
                     }
                 }
                 form.fields = formFields;
-                form.save(function(err, updatedForm) {
-                    if(err) {
+                form.save(function(err, updatedForm)
+                {
+                    if(err)
+                    {
                         deferred.reject(err);
-                    } else {
+                    }
+                    else
+                    {
                         deferred.resolve(updatedForm);
                     }
                 });

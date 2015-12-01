@@ -9,50 +9,59 @@ module.exports = function(app,model){
     app.delete("/api/assignment/form/:formId", DeleteForm);
     app.get("/api/assignment/form?formTitle=formTitle", GetFormByTitle);
 
-    function CreateForm(req,res){
+    function CreateForm(req,res)
+    {
         model
             .Create(req.body, req.params.userId)
-            .then(function(form) {
+            .then(function(form)
+            {
                 res.json(form);
             });
         //res.json(model.Create(req.body,req.params.userId));
     }
 
-    function GetForms(req, res){
-        console.log("forms.service.server.js: GetForms: " + req.params.userId);
+    function GetForms(req, res)
+    {
         model
             .FindFormsByUserId(req.params.userId)
-            .then(function(forms) {
+            .then(function(forms)
+            {
                 res.json(forms);
             });
     }
 
-    function GetForm(req, res){
+    function GetForm(req, res)
+    {
         model
             .FindById(req.params.formId)
-            .then(function(form) {
+            .then(function(form)
+            {
                 res.json(form);
             });
     }
 
-    function GetFormByTitle(req, res){
-        var formTitle = req.param("formTitle");
+    function GetFormByTitle(req, res)
+    {
         model
             .FindFormByTitle(formTitle)
-            .then(function(form) {
+            .then(function(form)
+            {
                 res.json(form);
             });
     }
 
-    function UpdateForm(req, res){
+    function UpdateForm(req, res)
+    {
         model
             .Update(req.params.formId, req.body)
-            .then(function(updatedForm) {
+            .then(function(updatedForm)
+            {
                 res.json(updatedForm);
             });
     }
 
-    function DeleteForm(req, res){
+    function DeleteForm(req, res)
+    {
         model
             .Delete(req.params.formId)
             .then(function(status) {

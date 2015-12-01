@@ -1,31 +1,44 @@
-"use strict";
-(function () {
-    angular.module("FormBuilderApp")
-        .controller("FormController", FormController);
+'use strict';
+(function(){
+    angular
+        .module("FormBuilderApp")
+        .controller("FormController",FormController);
 
-    function FormController($scope, FormService, $rootScope, $location)
+    function FormController($scope,$location,$rootScope,FormService)
     {
-        console.log("inside form controller");
-        console.log($rootScope.user);
+        console.log("registered user "+ $rootScope.user.username);
+        //$rootScope.forms = [];
+        $scope.forms =[];
+        console.log("Form Controller function called!");
+        //$scope.hello = "hello from header controller";
+        $scope.$location = $location;
+        $scope.addForm = addForm;
+        $scope.selectForm = selectForm;
+        $scope.deleteForm = deleteForm;
+        $scope.updateForm = updateForm;
+        $scope.navigateToFields = navigateToFields;
+        $scope.tempforms=[];
+        //$scope.forms = $rootScope.forms;
 
-        setFormsForLoggedInUser($rootScope.user);
-        function setFormsForLoggedInUser(user)
-        {
-            FormService.findAllFormsForUser(user._id)
+        FormService.findAllFormsForUser($rootScope.user._id)
                 .then(function(forms)
                 {
                     $scope.forms = forms;
                 });
 
-        }
 
-        $scope.addForm = addForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
-        $scope.updateForm = updateForm;
-        $scope.navigateToFields = navigateToFields;
+        //function guid() {
+        //    function s4() {
+        //        return Math.floor((1 + Math.random()) * 0x10000)
+        //            .toString(16)
+        //            .substring(1);
+        //    }
+        //    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        //        s4() + '-' + s4() + s4() + s4();
+        //}
 
-        function addForm()
+
+        function addForm(form)
         {
             console.log("inside add form");
             var form ={title: $scope.formName};
@@ -45,13 +58,14 @@
             }
         }
 
-        function navigateToFields(formId)
-        {
-            console.log("Inside navigate function");
-            var path = "/user/" + $rootScope.user._id + "/form/" + formId + "/fields";
-            console.log(path);
-            $location.path(path);
-        }
+        //function deleteForm(form)
+        //{
+        //    var index = $scope.forms.indexOf(form);
+        //    FormService.dele
+        //        $scope.forms.splice(index, 1);
+        //
+        //}
+
 
         function deleteForm(formId)
         {
@@ -66,9 +80,20 @@
                             $scope.forms = forms;
                         });
                 });
+
         }
 
-        function updateForm(selectedFormId, index)
+        function selectForm(index)
+        {
+            console.log("inside select form");
+            console.log("selected id "+ $scope.forms[index]._id);
+            $scope.selectedFormId = $scope.forms[index]._id;
+            $rootScope.selectedFormId = $scope.selectedFormId;
+            $scope.formName = $scope.forms[index].title;
+            $scope.index = index;
+        }
+
+        function updateForm(newform)
         {
             if (!angular.isUndefined(index))
             {
@@ -86,149 +111,20 @@
                     })
                 }
             }
+
         }
 
-        function selectForm(index)
+        function navigateToFields(formId)
         {
-            console.log("inside select form");
-            console.log("selected id "+ $scope.forms[index]._id);
-            $scope.selectedFormId = $scope.forms[index]._id;
-            $rootScope.selectedFormId = $scope.selectedFormId;
-            $scope.formName = $scope.forms[index].title;
-            $scope.index = index;
+            console.log("Inside navigate function");
+            var path = "/user/" + $rootScope.user._id + "/form/" + formId + "/fields";
+            console.log(path);
+            $location.path(path);
         }
-
-
 
 
     }
+
+
+
 })();
-
-
-
-
-
-
-
-
-//(function(){
-//    angular
-//        .module("FormBuilderApp")
-//        .controller("FormController",FormController);
-//
-//    function FormController($scope,$location,$rootScope,FormService)
-//    {
-//        console.log("registered user "+ $rootScope.user.username);
-//        //$rootScope.forms = [];
-//        $scope.forms =[];
-//        console.log("Form Controller function called!");
-//        //$scope.hello = "hello from header controller";
-//        $scope.$location = $location;
-//        $scope.addForm = addForm;
-//        $scope.selectForm = selectForm;
-//        $scope.deleteForm = deleteForm;
-//        $scope.updateForm = updateForm;
-//        $scope.tempforms=[];
-//        //$scope.forms = $rootScope.forms;
-//
-
-//        function getFormsForLoggedInUser(user)
-//        {
-//            FormService.findAllFormsForUser(user.id,function(forms){
-//                if(forms.length >= 0)
-//                {
-//                    return forms;
-//                }
-//
-//            });
-//
-//        }
-//
-//
-//        //function guid() {
-//        //    function s4() {
-//        //        return Math.floor((1 + Math.random()) * 0x10000)
-//        //            .toString(16)
-//        //            .substring(1);
-//        //    }
-//        //    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-//        //        s4() + '-' + s4() + s4() + s4();
-//        //}
-//
-//
-//        function addForm(form)
-//        {
-//            //console.log($scope.forms);
-//            console.log("add function called!");
-//            var currentUserId = $rootScope.user.id;
-//            var newForm =
-//            {
-//                userId:currentUserId,
-//                name:form.name
-//            };
-//            form.name = "";
-//
-//            FormService.createFormForUser(currentUserId,newForm);
-//
-//            //$scope.forms = getFormsForLoggedInUser($rootScope.user);
-//            //$scope.forms.push(newForm);
-//            setFormsForLoggedInUser($rootScope.user);
-//        }
-//
-//        //function deleteForm(form)
-//        //{
-//        //    var index = $scope.forms.indexOf(form);
-//        //    FormService.dele
-//        //        $scope.forms.splice(index, 1);
-//        //
-//        //}
-//
-//
-//        function deleteForm(index)
-//        {
-//            FormService.deleteFormById($scope.forms[index].formId,function(forms){
-//                $scope.forms = forms;
-//            });
-//            //$scope.tempforms = [];
-//            //$scope.forms = getFormsForLoggedInUser($rootScope.user);
-//
-//        }
-//
-//        function selectForm(index)
-//        {
-//            $scope.selectedFormIndex = index;
-//            $scope.form = {
-//                name: $scope.forms[index].name
-//            };
-//        }
-//
-//        function updateForm(newform)
-//        {
-//            console.log("update function called!");
-//            var currentUserId = $rootScope.user.id;
-//            var form = $scope.forms[$scope.selectedFormIndex];
-//
-//
-//            //$scope.courses[$scope.selectedCourseIndex] = {
-//            //    title: course.title,
-//            //    seats: course.seats,
-//            //    start: course.start
-//            //};
-//
-//
-//            FormService.updateFormById(form.formId,newform,function(form){
-//                console.log("forms");
-//                //$scope.forms = forms;
-//
-//                $scope.forms[$scope.selectedFormIndex] = form;
-//
-//            })
-//
-//        }
-//
-//
-//    }
-//
-//
-//
-//})();
