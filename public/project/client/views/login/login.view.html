@@ -3,12 +3,17 @@
         <title>Login</title>
     </head>
     <body>
-        <div class="row">
+        <div ng-controller="LoginController" class="row">
 
 
         <div class="container col-sm-8">
 
             <h1>Login</h1>
+
+            <h1>Hello {{name}}</h1>
+
+            <button class="btn btn-default" ng-click="fbLogin()">Facebook Login</button>
+
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="Username" class="col-sm-2 control-label">Username</label>
