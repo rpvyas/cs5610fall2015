@@ -26,6 +26,7 @@
                         console.log("logging more response ");
                         console.log((response));
                         user.name=  response.name;
+                        $location.path("/search");
 
                     });
                     FB.api('/me/likes', function(response) {
@@ -33,10 +34,9 @@
                         console.log((response));
                         user.likes = response.data;
                         $rootScope.user = user;
-                        console.log(user);
-                        console.log("redirecting to user page");
-                        $location.path("/user");
+
                     });
+
 
                 }
 
@@ -49,6 +49,10 @@
                     console.log("fb account doesn't exist");
                 }
             },{scope: 'user_likes'});
+            console.log("Logging user object");
+            console.log(user);
+            console.log("redirecting to search page");
+            $location.path("/search");
         }
 
         function login(username,password)

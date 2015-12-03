@@ -8,7 +8,7 @@
 
     <div class="container col-sm-8">
 
-        <h1>Welcome {{user.first_name}}</h1>
+        <h1>Welcome {{user.name}}</h1>
 
         <h3>Get latest on.....</h3>
         <table class="table table-bordered table-responsive table-condensed">
@@ -22,7 +22,7 @@
                 <tr>
                 <tr ng-repeat="like in userlikes">
                     <td>
-                        like.name
+                        {{like.name}}
                     </td>
                     <td>
                         <button ng-click="followTopic(SearchQuery)" class="btn btn-default">

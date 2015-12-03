@@ -8,6 +8,8 @@
     function SearchController($scope,$location,$rootScope, $http)
     {
         console.log("Search Controller function called!");
+        console.log("**************************");
+        console.log($rootScope.user);
         //$scope.hello = "hello from header controller";
         $scope.$location = $location;
 
@@ -96,6 +98,7 @@
             $rootScope.newsitems = items;
             $scope.searchQuery = SearchTitle;
             console.log(items.length);
+
             $location.path("/searchresults");
         }
 
