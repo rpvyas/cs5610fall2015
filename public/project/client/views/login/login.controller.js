@@ -3,7 +3,7 @@
         .module("NewsRoomApp")
         .controller("LoginController",LoginController);
 
-    function LoginController($scope,$location,$rootScope, UserService)
+    function LoginController($scope,$location,$rootScope)
     {
         console.log("Controller function called!");
         //$scope.hello = "hello from header controller";
