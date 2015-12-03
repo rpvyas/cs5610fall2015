@@ -1,14 +1,23 @@
-<h1>Hello!!</h1>
+<h1>Search Results</h1>
 
 <div ng-controller="SearchController" class="container-fluid">
-    {{imageUrl}}
+    <table>
+        <tr>
+            <td> Follow Topic   {{searchQuery}}</td>
+            <td>
+                <button ng-click="followTopic(SearchQuery)" class="btn btn-default center-block">
+                    <scan class="glyphicon glyphicon-star-empty"></scan>
+                </button>
+
+            </td>
+        </tr>
+    </table>
 
     <table class="table table-bordered table-responsive table-condensed">
         <thead>
         <tr>
             <th>Story title</th>
             <th>Image</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbod>
@@ -20,11 +29,6 @@
                         </div>
                     </td>
                     <td><img class="img-responsive" src="{{newsitem.imageUrl}}"><a href={{newsitem.url}} target="_blank"></a></td>
-                    <td>
-                        <button ng-click="followNews(newsitem._id)" class="btn btn-info">
-                            <scan class="glyphicon glyphicon-eye-open"></scan>
-                        </button>
-                    </td>
 
                 </tr>
 

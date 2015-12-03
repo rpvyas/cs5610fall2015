@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>User</title>
+</head>
+<body>
+<div ng-controller="UserController" class="row">
+
+
+    <div class="container col-sm-8">
+
+        <h1>Welcome {{user.first_name}}</h1>
+
+        <h3>Get latest on.....</h3>
+        <table class="table table-bordered table-responsive table-condensed">
+            <thead>
+            <tr>
+                <th>Topics</th>
+                <th>Follow</th>
+            </tr>
+            </thead>
+            <tbod>
+                <tr>
+                <tr ng-repeat="like in userlikes">
+                    <td>
+                        like.name
+                    </td>
+                    <td>
+                        <button ng-click="followTopic(SearchQuery)" class="btn btn-default">
+                            <scan class="glyphicon glyphicon-star-empty"></scan>
+                        </button>
+                    </td>
+
+                </tr>
+
+                </tr>
+            </tbod>
+        </table>
+
+
+    </div>
+</div>
+</body>
+</html>
