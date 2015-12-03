@@ -1,20 +1,27 @@
 <h1>Search Results</h1>
 
 <div ng-controller="SearchController" class="container-fluid">
-    <table>
+    <!--<table>-->
+        <!--<tr>-->
+            <!--<td> </td>-->
+
+            <!--<td>-->
+
+            <!--</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+    <table class="table table-responsive table-condensed">
+        <thead>
         <tr>
-            <td> Follow Topic   {{searchQuery}}</td>
-            <td>
-                <button ng-click="followTopic(SearchQuery)" class="btn btn-default center-block">
+            <th>
+                Follow   {{searchQuery}}
+                <button ng-click="followTopic(SearchQuery)" class="btn btn-default pull-right">
                     <scan class="glyphicon glyphicon-star-empty"></scan>
                 </button>
-
-            </td>
+            </th>
+            <th></th>
         </tr>
-    </table>
-
-    <table class="table table-bordered table-responsive table-condensed">
-        <thead>
         <tr>
             <th>Story title</th>
             <th>Image</th>

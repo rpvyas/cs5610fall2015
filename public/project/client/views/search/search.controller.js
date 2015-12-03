@@ -15,8 +15,9 @@
 
         //$scope.imageUrl = $rootScope.imageUrl;
         $scope.newsitems = $rootScope.newsitems;
+        $scope.searhQuery = $rootScope.searchQuery;
         $scope.search = search;
-        $scope.searchQuery = "";
+        //$scope.searchQuery = "";
         function mycallback(json)
         {
             console.log(json);
@@ -96,7 +97,7 @@
             console.log(items);
             $scope.newsitems = items;
             $rootScope.newsitems = items;
-            $scope.searchQuery = SearchTitle;
+            $rootScope.searchQuery = SearchTitle;
             console.log(items.length);
 
             $location.path("/searchresults");
