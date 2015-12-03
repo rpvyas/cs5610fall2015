@@ -21,6 +21,7 @@
                 if (response.status === 'connected') {
                     console.log(response);
                     console.log("logged in ");
+                    $location.path("/search")
                 } else if (response.status === 'not_authorized') {
                     // The person is logged into Facebook, but not your app.
                     console.log("not authorized");

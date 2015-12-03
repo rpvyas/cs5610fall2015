@@ -14,7 +14,15 @@
         <tbod>
             <tr>
                 <tr ng-repeat="newsitem in newsitems">
-                    <td><a href={{newsitem.url}} target="_blank">{{newsitem.title}}</a></td>
+                    <td>
+                        <a href={{newsitem.url}} target="_blank">{{newsitem.title}}</a>
+                        <div
+                                class="fb-like"
+                                data-share="true"
+                                data-width="450"
+                                data-show-faces="true">
+                        </div>
+                    </td>
                     <td><img class="img-responsive" src="{{newsitem.imageUrl}}"><a href={{newsitem.url}} target="_blank"></a></td>
                     <td>
                         <button ng-click="followNews(newsitem._id)" class="btn btn-info">
