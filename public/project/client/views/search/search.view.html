@@ -6,19 +6,19 @@
 <div class="row">
 
 
-    <div class="container col-sm-8">
+    <div ng-controller="SearchController" class="container col-sm-8">
 
         <h1>Serach Newsroom</h1>
         <form class="form-horizontal">
             <div class="form-group">
-                <label for="SerachTitle" class="col-sm-2 control-label">Search</label>
+                <label for="SearchTitle" class="col-sm-2 control-label">Search</label>
                 <div class="col-sm-10">
-                    <input ng-model="serach.title" type="text" class="form-control" id="SerachTitle" placeholder="e.g. Liverpool FC">
+                    <input ng-model="search.title" type="text" class="form-control" id="SearchTitle" placeholder="e.g. Liverpool FC">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <a ng-click=serach(serach.title) role="button" class="btn btn-primary form-control">Search</a>
+                    <a ng-click=search(search.title) role="button" class="btn btn-primary form-control">Search</a>
                 </div>
             </div>
         </form>

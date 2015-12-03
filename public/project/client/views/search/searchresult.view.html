@@ -1,0 +1,30 @@
+<h1>Hello!!</h1>
+
+<div ng-controller="SearchController" class="container-fluid">
+    {{imageUrl}}
+
+    <table class="table table-bordered table-responsive table-condensed">
+        <thead>
+        <tr>
+            <th>Story title</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbod>
+            <tr>
+                <tr ng-repeat="newsitem in newsitems">
+                    <td><a href={{newsitem.url}}>{{newsitem.title}}</a></td>
+                    <td><img class="img-responsive" src="{{newsitem.imageUrl}}"><a href={{newsitem.url}}></a></td>
+                    <td>
+                        <button ng-click="followNews(newsitem._id)" class="btn btn-info">
+                            <scan class="glyphicon glyphicon-eye-open"></scan>
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tr>
+        </tbod>
+    </table>
+</div>

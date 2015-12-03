@@ -22,6 +22,11 @@
                     templateUrl: "client/views/search/search.view.html",
                     controller: "SearchController"
                 })
+                .when("/searchresults",
+                {
+                    templateUrl: "client/views/search/searchresult.view.html",
+                    controller: "SearchController"
+                })
                 .when("/signup",
                 {
                     templateUrl: "client/views/signup/signup.view.html",
