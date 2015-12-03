@@ -14,8 +14,8 @@
         <tbod>
             <tr>
                 <tr ng-repeat="newsitem in newsitems">
-                    <td><a href={{newsitem.url}}>{{newsitem.title}}</a></td>
-                    <td><img class="img-responsive" src="{{newsitem.imageUrl}}"><a href={{newsitem.url}}></a></td>
+                    <td><a href={{newsitem.url}} target="_blank">{{newsitem.title}}</a></td>
+                    <td><img class="img-responsive" src="{{newsitem.imageUrl}}"><a href={{newsitem.url}} target="_blank"></a></td>
                     <td>
                         <button ng-click="followNews(newsitem._id)" class="btn btn-info">
                             <scan class="glyphicon glyphicon-eye-open"></scan>
