@@ -12,6 +12,7 @@
 
         function signup(user)
         {
+            console.log(user);
             //console.log("inside register function");
             //console.log("username "+ user.username );
             //var newUser = {

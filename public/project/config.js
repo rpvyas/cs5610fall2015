@@ -41,6 +41,7 @@
                 .when("/home",
                 {
                     templateUrl: "home/views/home/home.view.html",
+                    controller:"HomeController"
                 })
 
                 .when("/login",
