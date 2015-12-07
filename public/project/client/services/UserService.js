@@ -1,7 +1,7 @@
 "use strict";
 (function () {
     angular
-        .module("FormBuilderApp")
+        .module("NewsRoomApp")
         .factory("UserService", UserService);
     function UserService($http,$q) {
 
@@ -18,7 +18,7 @@
 
         function findUserByUsername(userName) {
             var defer = $q.defer();
-            var url = "/api/assignment/user?username=" + userName;
+            var url = "/api/project/user?username=" + userName;
             console.log(url);
             $http.get(url)
                 .success(function(response){
@@ -29,7 +29,7 @@
 
         function findUserByUsernameAndPassword(userName, password) {
             var defer = $q.defer();
-            var url = "/api/assignment/user?username=" + userName + "&password=" + password;
+            var url = "/api/project/user?username=" + userName + "&password=" + password;
             console.log(url);
             $http.get(url)
                 .success(function(response){
@@ -40,7 +40,7 @@
 
         function findUserById(userId) {
             var defer = $q.defer();
-            var url = "/api/assignment/user/" + userId;
+            var url = "/api/project/user/" + userId;
             console.log(url);
             $http.get(url)
                 .success(function(response){
@@ -51,7 +51,7 @@
 
         function findAllUsers() {
             var defer = $q.defer();
-            var url = '/api/assignment/user';
+            var url = '/api/project/user';
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -61,9 +61,9 @@
 
         function createUser(user)
         {
-            console.log("**************MAPPED CALL TO USER SERVICE*******************")
+            console.log("Inside create user");
             var defer = $q.defer();
-            var url = '/api/assignment/user';
+            var url = '/api/project/user';
             //console.log(user);
             $http.post(url, user)
                 .success(function(response){
@@ -74,7 +74,7 @@
 
         function deleteUserById(userId) {
             var defer = $q.defer();
-            var url = '/api/assignment/user/'+ userId;
+            var url = '/api/project/user/'+ userId;
             console.log(url);
             $http.delete(url)
                 .success(function(response){
@@ -85,10 +85,9 @@
 
         function updateUser(user, userId)
         {
-            console.log("****************MAPPED CALL TO UPDATE USER***************");
             var defer = $q.defer();
-            var url = '/api/assignment/user/'+ userId;
-            console.log("**user id is "+ userId);
+            var url = '/api/project/user/'+ userId;
+
             $http.put(url, user)
                 .success(function(response){
                     defer.resolve(response);

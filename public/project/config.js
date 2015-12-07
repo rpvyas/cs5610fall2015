@@ -43,11 +43,28 @@
                     templateUrl: "home/views/home/home.view.html",
                     controller:"HomeController"
                 })
+                .when("/select",
+                {
+                    templateUrl: "home/views/signup/select.html",
+                    controller:"SignupController"
+                })
 
                 .when("/login",
                 {
                     templateUrl: "client/views/login/login.view.html",
                     controller: "LoginController"
+                })
+
+                .when("/profile",
+                {
+                    templateUrl: "client/views/profile/profile.view.html",
+                    controller: "ProfileController"
+                })
+
+                .when("/categories",
+                {
+                    templateUrl: "client/views/categories/form.view.html",
+                    controller: "FormController"
                 })
 
 
