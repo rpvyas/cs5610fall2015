@@ -3,17 +3,18 @@
         .module("NewsRoomApp")
         .controller("FormController",FormController);
 
-    function FormController($scope,$location,$rootScope)
+    function FormController($scope,$location,$rootScope,UserService)
     {
         //$rootScope.forms = [];
-        $scope.interests =[];
-        console.log("Form Controller function called!");
+        $scope.interests =$rootScope.user.interests;
+        console.log($rootScope.user);
         //$scope.hello = "hello from header controller";
         $scope.$location = $location;
         $scope.addForm = addForm;
         $scope.selectForm = selectForm;
         $scope.deleteForm = deleteForm;
         $scope.updateForm = updateForm;
+        $scope.message = "";
         $scope.tempforms=[];
         //$scope.forms = $rootScope.forms;
 
@@ -44,6 +45,16 @@
 
         function addForm(interest)
         {
+            for(var i = 0 ; i<$scope.interests.length; i++)
+            {
+                var current = $scope.interests[i];
+                if(current == interest)
+                {
+                    console.log("*****DUPLICATE****************");
+                    $scope.message = interest+ " already added in your interests";
+                    return;
+                }
+            }
             console.log(interest);
             //console.log($scope.forms);
             console.log("add function called!");
@@ -54,20 +65,9 @@
             user.interests.push(interest);
 
             $scope.interests = user.interests;
-            //var currentUserId = $rootScope.user.id;
-            //var newForm = {
-            //    userId:currentUserId,
-            //    formId: guid(),
-            //    name:form.name
-            //};
-            //form.name = "";
-            //
-            //FormService.createFormForUser(currentUserId,newForm,function(form){
-            //    console.log("form created");
-            //})
-            ////$scope.forms = getFormsForLoggedInUser($rootScope.user);
-            ////$scope.forms.push(newForm);
-            //setFormsForLoggedInUser($rootScope.user);
+            console.log(user);
+            UserService.updateUser(user, user._id);
+
         }
 
         //function deleteForm(form)
@@ -81,9 +81,18 @@
 
         function deleteForm(index)
         {
-            FormService.deleteFormById($scope.forms[index].formId,function(forms){
-                $scope.forms = forms;
-            });
+            $scope.interests.splice(index,1);
+            console.log($scope.forms);
+            var user = $rootScope.user;
+            user.interests = $scope.interests;
+
+            UserService.updateUser(user, user._id)
+                .then(function(updatedUser) {
+                    console.log("***********FORM DELETED***********");
+                    $scope.forms = updatedUser.interests;
+                    console.log(updatedUser);
+                });
+
             //$scope.tempforms = [];
             //$scope.forms = getFormsForLoggedInUser($rootScope.user);
 
@@ -92,8 +101,8 @@
         function selectForm(index)
         {
             $scope.selectedFormIndex = index;
-            $scope.form = {
-                name: $scope.forms[index].name
+            $scope.selectedInterest = {
+                name: $scope.interests[index]
             };
         }
 

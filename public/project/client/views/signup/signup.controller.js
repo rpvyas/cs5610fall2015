@@ -22,21 +22,28 @@
                 lastname:user.lastname,
                 email:user.email,
                 interests:[],
+                sharednewsitems:[],
+                favorites:[],
+                following:[],
+                followers:[],
 
             };
 
-            UserService.createUser(newUser, function(user)
-            {
-                console.log("inside create user call back");
+            UserService.createUser(newUser)
+                .then(function(newlyCreatedUser) {
+                    //console.log(newlyCreatedUser);
 
-                console.log(user.id);
-                console.log(user.username);
-            })
+                    //update rootscope user
+                    $rootScope.user = newlyCreatedUser;
+                    $rootScope.$broadcast('auth', newlyCreatedUser);
+                    //Navigate to profile
+                    $location.path("/categories");
+                });
 
-            console.log("current url ");
-            console.log($location.url);
-            $rootScope.user = newUser;
-            $location.path('/categories');
+            //console.log("current url ");
+            //console.log($location.url);
+            ////$rootScope.user = newUser;
+            //$location.path('/categories');
 
 
         }

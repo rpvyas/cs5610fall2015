@@ -12,7 +12,7 @@
                     templateUrl: "client/views/signup/signup.view.html",
                     controller: "SignupController"
                 })
-                .when("/timeline",
+                .when("/timeline/:userId",
                 {
                     templateUrl: "client/views/timeline/timeline.view.html",
                     controller: "TimelineController"
@@ -40,7 +40,7 @@
 
                 .when("/home",
                 {
-                    templateUrl: "home/views/home/home.view.html",
+                    templateUrl: "client/views/home/home.view.html",
                     controller:"HomeController"
                 })
                 .when("/select",
@@ -65,6 +65,12 @@
                 {
                     templateUrl: "client/views/categories/form.view.html",
                     controller: "FormController"
+                })
+
+                .when("/newsfeed",
+                {
+                    templateUrl: "client/views/newsfeed/newsfeed.view.html",
+                    controller: "NewsFeedController"
                 })
 
 

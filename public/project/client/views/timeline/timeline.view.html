@@ -10,6 +10,9 @@
 
         <div>
             <!-- Tab panes -->
+            <h1>{{user.firstname}}  {{user.lastname}}  Profile</h1>
+
+            <h2>Followers: {{user.followers.length}}</h2> <h2>Following: {{user.following.length}}</h2>
             <div class="tab-content">
                 <div role="tabpanel" content="active" class="tab-pane active" id="forms">
                     <table class="table table-responsive">
@@ -23,31 +26,22 @@
                         </thead>
                         <tbody>
 
-                        <tr ng-repeat="item in newsitems">
+                        <tr ng-repeat="newsitem in newsitems">
                             <td>
-                                {{item.category}}
+                                <img class="img-responsive" src="{{newsitem.imageUrl}}">
+                                <a href="{{newsitem.url}}" target="_blank">{{newsitem.title}}</a>
+                                <br>
+                                <button ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
+                                    <scan class="glyphicon glyphicon-heart"></scan>
+                                </button>
+                                <a ng-click="">favorite</a>
+                                <button ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
+                                    <scan class="glyphicon glyphicon-share"></scan>
+                                </button>
+                                <a ng-click="">share</a>
+                                {{newsitem.time}}
                             </td>
-                            <td>
-                                {{item.source}}
-                            </td>
-                            <td>
-                                {{item.headline}}
-                            </td>
-                            <td>
-                                <button class="btn btn-info">
-                                    Happy
-                                </button>
-                                <button class="btn btn-success">
-                                    Inspiring
-                                </button>
-                                <button class="btn btn-warning">
-                                    Sad
-                                </button>
-                                <button class="btn btn-default">
-                                    Exciting
-                                </button>
 
-                            </td>
                         </tr>
 
 

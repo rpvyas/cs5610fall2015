@@ -3,7 +3,7 @@
         .module("NewsRoomApp")
         .controller("LoginController",LoginController);
 
-    function LoginController($scope,$location,$rootScope)
+    function LoginController($scope,$location,$rootScope,UserService)
     {
         console.log("Controller function called!");
         //$scope.hello = "hello from header controller";
@@ -55,24 +55,20 @@
             $location.path("/search");
         }
 
-        function login(username,password)
+        function login(user)
         {
-            UserService.findUserByUsernameAndPassword(username,password,function(user){
-
-                if(user == null)
-                {
-                    $scope.errorMessage = "user not found";
-                }
-                else
-                {
-                    console.log(user);
-                    $rootScope.user = user;
-                    $location.path('/profile');
-                }
-
-            })
+            var username = user.username;
+            var password = user.password;
+            console.log(" user "+ username + " password " + password);
+            UserService.findUserByUsernameAndPassword(username, password)
+                .then(function(currentUser) {
+                    if(currentUser != null) {
+                        $rootScope.user = currentUser;
+                        $rootScope.$broadcast('auth', currentUser);
+                        $location.path("/newsfeed");
+                    }
+                });
         }
-
 
 
 

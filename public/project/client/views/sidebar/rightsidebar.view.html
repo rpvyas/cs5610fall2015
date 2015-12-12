@@ -1,0 +1,5 @@
+<nav ng-controller="SidebarController">
+    <ul  ng-repeat="suggestedUser in suggestedUsers" class="nav nav-pills nav-stacked">
+        <li ng-if="user"><a href="#/search">{{suggestedUser.firstname}}</a></li>
+    </ul>
+</nav>

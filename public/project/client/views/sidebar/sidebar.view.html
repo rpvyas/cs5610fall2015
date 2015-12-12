@@ -1,6 +1,23 @@
-<nav>
-    <ul class="nav nav-pills nav-stacked">
-        <li ng-class="{'active' : $location.url().indexOf('serach') != -1}"><a href="#/search">Search</a></li>
-        <li ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/user">News Board</a></li>
-    </ul>
-</nav>
+<h3>Who to follow</h3>
+<table class="table table-bordered table-responsive table-condensed">
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">Topic Name</span></th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <tbody>
+
+    <tr ng-repeat="suggestedUser in suggestedUsers">
+        <td>
+            <span class="glyphicon glyphicon-user"></span>
+            <a href="#/timeline/{{suggestedUser._id}}">{{suggestedUser.username}}</a>
+            <button ng-click="follow(suggestedUser._id)" class="btn btn-info pull-right">
+                <scan class="glyphicon glyphicon-star"></scan>
+            </button>
+        </td>
+
+    </tr>
+
+
+    </tbody>
+</table>

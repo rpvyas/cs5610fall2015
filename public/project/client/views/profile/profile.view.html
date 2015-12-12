@@ -4,13 +4,11 @@
 </head>
 <body>
 
-<div class="row">
+<div ng-controller="ProfileController" class="row">
 
     <div class="container col-sm-8">
 
-        <h1>Profile for user </h1>
-        <h2>{{user.username}}</h2>
-
+        <h1>Update your information</h1>
 
         <form class="form-horizontal">
             <div class="form-group">
@@ -47,8 +45,6 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a ng-click=update(user) role="button" class="btn btn-default form-control">Update</a>
-
-
                     {{successMessage}}
                 </div>
             </div>

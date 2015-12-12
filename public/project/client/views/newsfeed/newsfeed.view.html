@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Form</title>
+</head>
+<body>
+
+<div class="row">
+    <div ng-controller="NewsFeedController" class="container col-sm-8">
+        <h1>inside feed</h1>
+
+        <table class="table table-bordered table-responsive table-condensed">
+            <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">Topic Name</span></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="newsitem in temp">
+                <td>
+                    <img class="img-responsive" src="{{newsitem.imageUrl}}">
+                    <a href="{{newsitem.url}}" target="_blank">{{newsitem.title}}</a>
+                    <br>
+                    <button ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
+                        <scan class="glyphicon glyphicon-heart"></scan>
+                    </button>
+                    <a ng-click="">favorite</a>
+                    <button ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
+                        <scan class="glyphicon glyphicon-share"></scan>
+                    </button>
+                    <a ng-click="">share</a>
+
+                </td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
