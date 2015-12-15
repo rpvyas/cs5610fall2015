@@ -13,7 +13,7 @@
         var user = $rootScope.user;
 
         var myitems = populateFeedItemsForUser(user);
-
+        //updateImageUrls($scope.temp);
         function populateFeedItemsForUser(user)
         {
             var interests = user.interests;
@@ -34,6 +34,17 @@
 
                     for(var j=0; j<newsitems.length;j++)
                     {
+                        //var newsitem = newsitems[j];
+                        //var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+                        //var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+                        //$http.jsonp(alchemyImageUrl)
+                        //    .success(function(response){
+                        //        //console.log(response);
+                        //        // console.log(response.image);
+                        //        console.log("***API RESPONSE****");
+                        //        newsitem.imageUrl = response.image;
+                        //        $scope.temp.push(newsitem);
+                        //    });
                         $scope.temp.push(newsitems[j]);
                     }
                     return $scope.temp;
@@ -41,7 +52,7 @@
 
 
             }
-            feeditems - $scope.temp
+            feeditems = $scope.temp
             //callback($scope.feeditems);
             return feeditems;
 
@@ -81,13 +92,47 @@
                         newsitem.url = arr[i].webUrl;
                         newsitem.title = arr[i].webTitle;
                         //TODO get it from API
-                        newsitem.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/47/Anfield,_7_December_2013.jpg";
+                        //newsitem.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/47/Anfield,_7_December_2013.jpg";
+                        getImageFromUrl(newsitem,function(newsitem){
+                           newsitems.push(newsitem)
+                        });
                         newsitems.push(newsitem);
                     }
                     callback(newsitems);
                 });
 
         }
+
+        function getImageFromUrl(newsitem,callback)
+        {
+            console.log("Alchemy api call for image ");
+            var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+            $http.jsonp(alchemyImageUrl)
+                .success(function(response){
+                    //console.log(response);
+                    // console.log(response.image);
+                    newsitem.imageUrl = (response.image);
+                    callback(newsitem);
+
+                });
+
+        }
+
+        //function getImageFromUrl(url,callback)
+        //{
+        //    console.log("Alchemy api call for image ");
+        //    var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+        //    var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ url + "&outputMode=json&jsonp=JSON_CALLBACK";
+        //    $http.jsonp(alchemyImageUrl)
+        //        .success(function(response){
+        //           //console.log(response);
+        //           // console.log(response.image);
+        //            callback(response.image);
+        //
+        //        });
+        //
+        //}
 
         function login(user)
         {

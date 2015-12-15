@@ -72,6 +72,7 @@ module.exports = function(mongoose, db)
         var deferred = q.defer();
         UserModel.findById(id, function(err, user) {
             if(err) {
+                console.log("!!!!!!!!!!!!!ERROR "+ id);
                 console.log(err);
                 deferred.reject(err);
             } else {

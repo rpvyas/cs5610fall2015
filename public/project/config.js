@@ -17,6 +17,16 @@
                     templateUrl: "client/views/timeline/timeline.view.html",
                     controller: "TimelineController"
                 })
+                .when("/user/:userId/followers",
+                {
+                    templateUrl: "client/views/timeline/followers.view.html",
+                    controller: "TimelineController"
+                })
+                .when("/user/:userId/following",
+                {
+                    templateUrl: "client/views/timeline/following.view.html",
+                    controller: "TimelineController"
+                })
                 .when("/search",
                 {
                     templateUrl: "client/views/search/search.view.html",

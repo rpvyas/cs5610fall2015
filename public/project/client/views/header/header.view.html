@@ -1,20 +1,68 @@
-<header class="row header">
-    <!--<div class="pull-left">-->
-        <!--<h2>Newsroom</h2>-->
-    <!--</div>-->
-    <div ng-controller="HeaderController">
-    <nav class="pull-right">
-        <ul class="list-inline nav nav-pills" style="color:white;">
-            <li><input type="text" placeholder="Search"> </li>
-            <!--<li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>-->
-            <li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>
-            <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>
-            <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
-            <li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>
-            <li ng-if="user" ng-class="{'active' : $location.url().indexOf('newsfeed') != -1}"><a href="#/newsfeed">News Feed</a></li>
-            <li ng-if="user" ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a ng-click="logout()">Logout</a></li>
+<!--<header>-->
+    <!--&lt;!&ndash;<h4 class="pull-left">WhiteBoard App</h4>&ndash;&gt;-->
+    <!--<nav class="pull-right">-->
+        <!--<ul class="list-inline nav nav-pills navbar-collapse" style="color:white;">-->
+            <!--&lt;!&ndash;<li><input type="text" placeholder="Search"> </li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>&ndash;&gt;-->
+            <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>-->
+            <!--<li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>-->
+            <!--<li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>-->
+            <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>-->
+            <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('newsfeed') != -1}"><a href="#/newsfeed">News Feed</a></li>-->
+            <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a ng-click="logout()">Logout</a></li>-->
+        <!--</ul>-->
+    <!--</nav>-->
+<!--</header>-->
+<nav class="navbar navbar-default nav-pills">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">
+                News Room
+                <!--<img alt="Brand" src="http://bwalles.com/wp-content/uploads/2013/05/Ferrari-Brand-Logo-Design-Background-HD-Wallpaper.jpg">-->
+            </a>
+        </div>
 
-        </ul>
-    </nav>
-    </div>
-</header>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+                <!--<li><a href="#">Link</a></li>-->
+            <!--</ul>-->
+            <!--<form class="navbar-form navbar-left" role="search">-->
+                <!--<div class="form-group">-->
+                    <!--<input type="text" class="form-control" placeholder="Search">-->
+                <!--</div>-->
+                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+            <!--</form>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search/" >Search</a></li>
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>
+                <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>
+                <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('newsfeed') != -1}"><a href="#/newsfeed">News Feed</a></li>
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a ng-click="logout()">Logout</a></li>
+
+            </ul>
+
+            <!--<ul class="list-inline nav nav-pills navbar-collapse" style="color:white;">-->
+                <!--&lt;!&ndash;<li><input type="text" placeholder="Search"> </li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>&ndash;&gt;-->
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>-->
+                <!--<li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>-->
+                <!--<li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>-->
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>-->
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('newsfeed') != -1}"><a href="#/newsfeed">News Feed</a></li>-->
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a ng-click="logout()">Logout</a></li>-->
+            <!--</ul>-->
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

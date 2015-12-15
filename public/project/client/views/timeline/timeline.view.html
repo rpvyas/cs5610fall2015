@@ -12,7 +12,8 @@
             <!-- Tab panes -->
             <h1>{{user.firstname}}  {{user.lastname}}  Profile</h1>
 
-            <h2>Followers: {{user.followers.length}}</h2> <h2>Following: {{user.following.length}}</h2>
+            <h2><a href= "#/user/{{userId}}/followers/">Followers: {{user.followers.length}}</a></h2>
+            <h2><a href= "#/user/{{userId}}/following/">Following: {{user.following.length}}</a></h2>
             <div class="tab-content">
                 <div role="tabpanel" content="active" class="tab-pane active" id="forms">
                     <table class="table table-responsive">

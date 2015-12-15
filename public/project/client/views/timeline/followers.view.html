@@ -1,0 +1,11 @@
+<div ng-controller="TimelineController" class="container-fluid">
+    <h2>{{user.firstname}} is followed by </h2>
+    <table class="table table-responsive table-striped">
+        <tr ng-repeat="myUser in followers">
+            <td>
+                <a href="#/timeline/{{myUser._id}}">{{myUser.firstname}}  {{myUser.lastname}}</a>
+            </td>
+        </tr>
+    </table>
+
+</div>

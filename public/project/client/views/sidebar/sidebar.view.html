@@ -1,4 +1,7 @@
-<h3>Who to follow</h3>
+<div controller="SidebarController">
+<div ng-if="suggestedUsers"><h3>Who to follow</h3></div>
+    <h4>{{message}}</h4>
+
 <table class="table table-bordered table-responsive table-condensed">
     <!--<thead>-->
     <!--<tr>-->
@@ -10,7 +13,7 @@
     <tr ng-repeat="suggestedUser in suggestedUsers">
         <td>
             <span class="glyphicon glyphicon-user"></span>
-            <a href="#/timeline/{{suggestedUser._id}}">{{suggestedUser.username}}</a>
+            <a href="#/timeline/{{suggestedUser._id}}">{{suggestedUser.firstname}} {{suggestedUser.lastname}}</a>
             <button ng-click="follow(suggestedUser._id)" class="btn btn-info pull-right">
                 <scan class="glyphicon glyphicon-star"></scan>
             </button>
@@ -21,3 +24,4 @@
 
     </tbody>
 </table>
+</div>

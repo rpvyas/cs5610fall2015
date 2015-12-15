@@ -19,61 +19,60 @@
         var user = $rootScope.user;
         $scope.suggestedUsers = [];
         console.log("here before function");
-        UserService.findAllUsers()
-            .then(function(allUsers){
-                console.log("all users left ");
-                console.log(allUsers);
-                for(var i=0; i<allUsers.length;i++)
-                {
-                    var currentUser = allUsers[i];
-                    if($scope.user._id == currentUser._id)
-                    {
-                        console.log("first continue ");
-                        continue;
-                    }
+        setSuggestedUsers();
 
-                    else
+        function setSuggestedUsers()
+        {
+            console.log("inside suggested users ");
+            UserService.findAllUsers()
+                .then(function(allUsers){
+                    console.log("all users left ");
+                    console.log(allUsers);
+                    for(var i=0; i<allUsers.length;i++)
                     {
-                        var userFollowing = $rootScope.user.following;
-                        for(var j=0; j<userFollowing.length; j++)
+                        var currentUser = allUsers[i];
+                        console.log("******************");
+                        console.log(currentUser);
+                        console.log("******************");
+                        if($scope.user._id == currentUser._id)
                         {
-                            if((userFollowing[j] == (allUsers[i]._id)))
-                            {
-                                console.log(userFollowing[j] + " is equal to " + allUsers[i]._id);
-                                continue;
-                            }
-                            else
-                            {
+                            console.log("first continue ");
+                            continue;
+                        }
 
+                        else
+                        {
+                            if(!(alreadyFollows($rootScope.user,allUsers[i])))
+                            {
+                                $scope.suggestedUsers.push(allUsers[i]);
                             }
                         }
-                        //var subjectUser = $rootScope.user;
-                        //var userToCheck = allUsers[i];
-                        //for(var i=0; i<subjectUser.following; i++ )
-                        //{
-                        //    console.log(subjectUser.following[i] + "    "+ userToCheck._id);
-                        //    if(!(subjectUser.following[i] == userToCheck._id))
-                        //    {
-                        //        $scope.suggestedUsers.push(userToCheck);
-                        //    }
-                        //}
-                        //$scope.suggestedUsers.push(allUsers[i]);
                     }
-                }
-                console.log("suggested users ");
-                console.log($scope.suggestedUsers);
-            });
+                    console.log("suggested users ");
+                    console.log($scope.suggestedUsers);
+                    if($scope.suggestedUsers.length == 0)
+                    {
+                        $scope.message = "following everyone";
+                    }
+                });
+        }
 
         function alreadyFollows(subjectUser, userToCheck)
         {
-            for(var i=0; i<subjectUser.following; i++ )
+            console.log("%%%%%%%%%%%%%%%%INSIDE ALREADY FOLLOWS%%%%%%%%%%%%%%%%%%%%%");
+            console.log(subjectUser);
+            console.log(userToCheck);
+            console.log("%%%%%%%%%%%%%%%% ALREADY FOLLOWS%%%%%%%%%%%%%%%%%%%%%");
+            for(var i=0; i<subjectUser.following.length; i++ )
             {
                 console.log(subjectUser.following[i] + "    "+ userToCheck._id);
                 if(subjectUser.following[i] == userToCheck._id)
                 {
+                    console.log("************RETURNING TRUE******************");
                     return true;
                 }
             }
+            console.log("************RETURNING FALSE******************");
             return false;
 
         }
@@ -86,6 +85,9 @@
                 .then(function(foundUser){
                    foundUser.followers.push($scope.user._id);
                     UserService.updateUser(foundUser,foundUser._id);
+                    $scope.suggestedUsers = [];
+                    console.log("calling reset function");
+                    setSuggestedUsers();
                 });
 
         }
