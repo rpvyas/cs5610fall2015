@@ -43,6 +43,7 @@
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>-->
+                <li><a href="https://docs.google.com/document/d/1EhkNLaHqXCnVXJvJT1V0SiwsSvoja0CxDo00E-FY56E/edit?usp=sharing">Documentation</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search/" >Search</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>
