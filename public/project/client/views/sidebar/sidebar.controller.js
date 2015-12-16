@@ -21,6 +21,13 @@
         console.log("here before function");
         setSuggestedUsers();
 
+        $rootScope.$on("unfollowEvent",function(event,updatedUser){
+            $scope.user = updatedUser;
+            $rootScope.user = updatedUser;
+            $scope.suggestedUsers = [];
+            $scope.message="";
+            setSuggestedUsers();
+        });
         function setSuggestedUsers()
         {
             console.log("inside suggested users ");
@@ -88,6 +95,7 @@
                     $scope.suggestedUsers = [];
                     console.log("calling reset function");
                     setSuggestedUsers();
+                    $rootScope.$broadcast("followEvent",userId);
                 });
 
         }

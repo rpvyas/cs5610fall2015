@@ -58,6 +58,11 @@
                     templateUrl: "home/views/signup/select.html",
                     controller:"SignupController"
                 })
+                .when("/showarticle",
+                {
+                    templateUrl: "client/views/newsfeed/showarticle.view.html",
+                    controller:"NewsFeedController"
+                })
 
                 .when("/login",
                 {

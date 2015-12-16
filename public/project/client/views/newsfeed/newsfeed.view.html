@@ -6,7 +6,7 @@
 <body>
 
 <div class="row">
-    <div ng-controller="NewsFeedController" class="container col-sm-8">
+    <div ng-controller="NewsFeedController" class="container col-sm-6">
         <h1>inside feed</h1>
 
         <table class="table table-bordered table-responsive table-condensed">
@@ -20,12 +20,12 @@
             <tr ng-repeat="newsitem in temp">
                 <td>
                     <img class="img-responsive" src="{{newsitem.imageUrl}}">
-                    <a href="{{newsitem.url}}" target="_blank">{{newsitem.title}}</a>
+                    <a ng-click="showArticle(newsitem)" href="" target="_blank">{{newsitem.title}}</a>
                     <br>
                     <button ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
                         <scan class="glyphicon glyphicon-heart"></scan>
                     </button>
-                    <button ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
+                    <button ng-if="isShared(newsitem) != 'true'" ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
                         <scan class="glyphicon glyphicon-share"></scan>
                     </button>
 

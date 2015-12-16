@@ -5,15 +5,33 @@
 <body>
 
 <div class="row">
-    <div ng-controller="TimelineController" class="container col-sm-8">
+    <div ng-controller="TimelineController" class="container col-sm-6">
 
 
         <div>
             <!-- Tab panes -->
-            <h1>{{user.firstname}}  {{user.lastname}}  Profile</h1>
 
-            <h2><a href= "#/user/{{userId}}/followers/">Followers: {{user.followers.length}}</a></h2>
-            <h2><a href= "#/user/{{userId}}/following/">Following: {{user.following.length}}</a></h2>
+            <div class="row">
+
+                <div style="font-size: large">
+                    <div>
+                        {{user.firstname}}  {{user.lastname}}
+                        <!--"key == 'City' || key == 'County'">-->
+                        <!--<a ng-if="showFollowButton=='true'" ng-click=follow(userId) role="button" class="btn btn-primary">Follow</a>-->
+                        <a ng-if="showUnfollowButton=='true'" ng-click=unFollow(userId) role="button" class="btn btn-primary pull-right">Unfollow</a>
+                    </div>
+
+                <div>
+
+                <ul class="nav nav-pills" role="tablist">
+                    <li role="presentation"><a style="font-size: large" href="#/user/{{userId}}/followers/">FOLLOWERS <span class="badge">{{user.followers.length}}</span></a></li>
+                    <li role="presentation"><a style="font-size: large" href="#/user/{{userId}}/following/">FOLLOWING <span class="badge">{{user.following.length}}</span></a></li>
+                    <li role="presentation"><a style="font-size: large" href="#/user/{{userId}}/interests/">INTERESTS <span class="badge">{{user.interests.length}}</span></a></li>
+                    <li role="presentation"><a style="font-size: large" href="#/user/{{userId}}/favorites/">FAVORITES <span class="badge">{{user.favorites.length}}</span></a></li>
+                </ul>
+            </div>
+
+
             <div class="tab-content">
                 <div role="tabpanel" content="active" class="tab-pane active" id="forms">
                     <table class="table table-responsive">
@@ -29,17 +47,20 @@
 
                         <tr ng-repeat="newsitem in newsitems">
                             <td>
+
                                 <img class="img-responsive" src="{{newsitem.imageUrl}}">
-                                <a href="{{newsitem.url}}" target="_blank">{{newsitem.title}}</a>
+                                <!--<div ng-controller="NewsFeedController">-->
+                                <a ng-controller="NewsFeedController" ng-click="showArticle(newsitem)" href="">{{newsitem.title}}</a>
+
                                 <br>
-                                <button ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
+                                <button ng-if="ownTimeline !='true'" ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
                                     <scan class="glyphicon glyphicon-heart"></scan>
                                 </button>
-                                <a ng-click="">favorite</a>
-                                <button ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
+
+                                <button ng-if="ownTimeline !='true'"ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
                                     <scan class="glyphicon glyphicon-share"></scan>
                                 </button>
-                                <a ng-click="">share</a>
+
                                 {{newsitem.time}}
                             </td>
 

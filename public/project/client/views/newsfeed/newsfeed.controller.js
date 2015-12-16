@@ -8,17 +8,57 @@
         $scope.$location = $location;
         $scope.feeditems = [];
         $scope.temp=[];
+        $scope.text="";
         $scope.addToShared = addToShared;
         $scope.addFavorite = addFavorite;
+        $scope.showArticle = showArticle;
+        $scope.isShared = isShared;
+        $scope.selectedNewsItem = {};
+
+        setSelectedNewsItem();
+        //$scope.selectedNewsItem
+
+       //if ($location.url().indexOf('showarticle')!=-1){
+       //    showArtidcle($scope.selectedNewsItem);
+       //}
         var user = $rootScope.user;
 
         var myitems = populateFeedItemsForUser(user);
         //updateImageUrls($scope.temp);
+
+        $rootScope.$on("newsitem", function (event, newsitem) {
+            $scope.selectedNewsItem = newsitem;
+        });
+
+        $rootScope.$on("favoriteEvent", function (event, newsitems) {
+            $scope.temp = newsitems;
+        });
+
+        function isShared(newsitem)
+        {
+            console.log("call to isShared");
+            for(var i=0; i<user.sharednewsitems.length;i++)
+            {
+                if(user.sharednewsitems[i].title == newsitem.title)
+                {
+                    $rootScope.$broadcast("favoriteEvent",$scope.temp);
+                    return "true";
+                }
+            }
+            return "false";
+
+        }
+        function setSelectedNewsItem(newsitem)
+        {
+            if(newsitem)
+            {
+                $rootScope.$broadcast('newsitem', newsitem);
+            }
+        }
         function populateFeedItemsForUser(user)
         {
             var interests = user.interests;
             var newsFeedItems = getFeedItemsFromInterests(interests);
-
             return newsFeedItems;
 
         }
@@ -61,7 +101,7 @@
         function getItemsFromAPI(interest,callback)
         {
             var guardianKey = "xcm8aahe2qcwhhvuztn6zuzd";
-            var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyKey1 = "78426ea";
             var alchemyKey2= " ";
             var urlForImage = " ";
             var currentTimeStamp = Math.floor(Date.now() / 1000);
@@ -105,7 +145,7 @@
 
         function getImageFromUrl(newsitem,callback)
         {
-            console.log("Alchemy api call for image ");
+            //console.log("Alchemy api call for image ");
             var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
             var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
             $http.jsonp(alchemyImageUrl)
@@ -133,19 +173,29 @@
         //        });
         //
         //}
-
-        function login(user)
+        function showArticle(newsitem)
         {
-            var username = user.username;
-            var password = user.password;
-            UserService.findUserByUsernameAndPassword(username, password)
-                .then(function(currentUser) {
-                    if(currentUser != null) {
-                        $rootScope.user = currentUser;
-                        $location.path("/newsfeed");
-                    }
+            $scope.dummy= "blah";
+            //console.log("Inside show article");
+            var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyTextUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+            $scope.selectedNewsItem = newsitem;
+            $http.jsonp(alchemyTextUrl)
+                .success(function(response){
+                    //console.log("**RESPONSE***");
+                    //console.log(response);
+                    newsitem.text = response.text;
+                    $scope.selectedNewsItem = newsitem;
+                    $scope.text = response.text;
+                    //console.log($scope.selectedNewsItem.text);
+                    setSelectedNewsItem(newsitem);
+                    //$location.path("/showarticle");
                 });
+            $location.path("/showarticle");
+
         }
+
+
 
         function addToShared(newsitem)
         {
@@ -163,9 +213,6 @@
             UserService.updateUser(user, user._id);
 
         }
-
-
-
 
     }
 })();
