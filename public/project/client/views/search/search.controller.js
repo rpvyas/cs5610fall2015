@@ -66,7 +66,6 @@
 
         function showArticle(newsitem)
         {
-            console.log("inside show article search controller");
             $rootScope.article = newsitem;
             $location.path("/articleview");
         }

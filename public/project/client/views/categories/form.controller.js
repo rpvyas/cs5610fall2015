@@ -7,7 +7,7 @@
     {
         //$rootScope.forms = [];
         $scope.interests =$rootScope.user.interests;
-        console.log($rootScope.user);
+
         //$scope.hello = "hello from header controller";
         $scope.$location = $location;
         $scope.addForm = addForm;
@@ -50,14 +50,14 @@
                 var current = $scope.interests[i];
                 if(current == interest)
                 {
-                    console.log("*****DUPLICATE****************");
+
                     $scope.message = interest+ " already added in your interests";
                     return;
                 }
             }
-            console.log(interest);
+
             //console.log($scope.forms);
-            console.log("add function called!");
+
             var user = $rootScope.user;
 
             //update user object
@@ -66,7 +66,7 @@
 
             $scope.interests = user.interests;
             $scope.interest="";
-            console.log(user);
+
             UserService.updateUser(user, user._id);
 
 
@@ -84,15 +84,15 @@
         function deleteForm(index)
         {
             $scope.interests.splice(index,1);
-            console.log($scope.forms);
+
             var user = $rootScope.user;
             user.interests = $scope.interests;
 
             UserService.updateUser(user, user._id)
                 .then(function(updatedUser) {
-                    console.log("***********FORM DELETED***********");
+
                     $scope.forms = updatedUser.interests;
-                    console.log(updatedUser);
+
                 });
 
             //$scope.tempforms = [];
@@ -110,7 +110,7 @@
 
         function updateForm(newform)
         {
-            console.log("update function called!");
+
             var currentUserId = $rootScope.user.id;
             var form = $scope.forms[$scope.selectedFormIndex];
 
@@ -123,7 +123,7 @@
 
 
             FormService.updateFormById(form.formId,newform,function(form){
-                console.log("forms");
+
                 //$scope.forms = forms;
 
                 $scope.forms[$scope.selectedFormIndex] = form;

@@ -20,8 +20,8 @@
 
         function search(searchTerm)
         {
-            console.log("Search called!");
-            console.log(searchTerm);
+            //console.log("Search called!");
+            //console.log(searchTerm);
         }
     }
 

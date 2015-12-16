@@ -19,7 +19,7 @@
         function findUserByUsername(userName) {
             var defer = $q.defer();
             var url = "/api/project/user?username=" + userName;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -30,7 +30,7 @@
         function findUserByUsernameAndPassword(userName, password) {
             var defer = $q.defer();
             var url = "/api/project/user?username=" + userName + "&password=" + password;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -41,7 +41,7 @@
         function findUserById(userId) {
             var defer = $q.defer();
             var url = "/api/project/user/" + userId;
-            console.log(url);
+            //console.log(url);
             $http.get(url)
                 .success(function(response){
                     defer.resolve(response);
@@ -61,7 +61,7 @@
 
         function createUser(user)
         {
-            console.log("Inside create user");
+            //console.log("Inside create user");
             var defer = $q.defer();
             var url = '/api/project/user';
             //console.log(user);
@@ -75,7 +75,7 @@
         function deleteUserById(userId) {
             var defer = $q.defer();
             var url = '/api/project/user/'+ userId;
-            console.log(url);
+            //console.log(url);
             $http.delete(url)
                 .success(function(response){
                     defer.resolve(response);

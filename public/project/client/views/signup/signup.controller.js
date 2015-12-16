@@ -5,16 +5,13 @@
 
     function SignupController($scope,$location,$rootScope,UserService)
     {
-        console.log("Signup Controller function called!");
+
         //$scope.hello = "hello from header controller";
         $scope.$location = $location;
         $scope.signup = signup;
 
         function signup(user)
         {
-            console.log(user);
-            console.log("inside register function");
-            console.log("username "+ user.username );
             var newUser = {
                 username:user.username,
                 password:user.password,

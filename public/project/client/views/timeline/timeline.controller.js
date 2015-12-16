@@ -14,7 +14,7 @@
         $scope.unFollow = unFollow;
         var userId = $routeParams.userId;
         $scope.userId = userId;
-        console.log(" inside timeline controller id is "+ userId);
+
         var loggedInUser = $rootScope.user;
         if(loggedInUser._id == userId)
         {
@@ -126,27 +126,33 @@
 
         function setCommonProperties(followersIds,followingIds)
         {
-            for(var i=0; i<followersIds.length; i++)
+            if(followersIds.length !=0)
             {
-                var userId = followersIds[i];
-                UserService.findUserById(userId)
-                    .then(function(foundUser){
-                        $scope.followers.push(foundUser);
-                    });
+                for(var i=0; i<followersIds.length; i++)
+                {
+                    var userId = followersIds[i];
+                    UserService.findUserById(userId)
+                        .then(function(foundUser){
+                            $scope.followers.push(foundUser);
+                        });
+                }
             }
-            console.log(followingIds);
-            for(var j=0; j<followingIds.length; j++)
+            if(followingIds.length !=0)
             {
-                console.log(" length "+ $scope.followingIds.length)
-                var userId = followingIds[j];
-                UserService.findUserById(userId)
-                    .then(function(foundUser){
-                        console.log("&&user found ");
-                        console.log(foundUser);
-                        $scope.following.push(foundUser);
-                        console.log(" following length " + $scope.following.length);
-                    });
+                for(var j=0; j<followingIds.length; j++)
+                {
+
+                    var userId = followingIds[j];
+                    UserService.findUserById(userId)
+                        .then(function(foundUser){
+
+                            $scope.following.push(foundUser);
+                            //console.log(" following length " + $scope.following.length);
+                        });
+                }
             }
+
+
             //console.log(" following length " + $scope.following.length);
         }
 

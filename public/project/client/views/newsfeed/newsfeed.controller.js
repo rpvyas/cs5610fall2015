@@ -211,22 +211,14 @@
         function showArticle(newsitem)
         {
 
-            console.log("Inside show article");
-            console.log(newsitem);
             var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
             var alchemyKey2 = "d835b54524dd6f4fbf4b6e012d31e136119ed2ba";
             var alchemyTextUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
 
-            console.log("*(*(*(*(*(*(*(");
-            console.log(newsitem.text)
-            console.log(newsitem);
-            console.log("*(*(*(*(*(*(*(");
             //if(!newsitem.text)
             {
                 $http.jsonp(alchemyTextUrl)
                     .success(function (response) {
-                        //console.log("**RESPONSE***");
-                        //console.log(response);
                         newsitem.text = response.text;
                         $scope.selectedNewsItem = newsitem;
                         $scope.text = response.text;
@@ -243,8 +235,6 @@
 
         function addToShared(newsitem)
         {
-            console.log("inside shared ");
-            console.log(newsitem);
             var user = $rootScope.user;
             var date = Date();
             newsitem.time = date.toString();

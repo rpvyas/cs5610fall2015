@@ -5,7 +5,7 @@
 
     function LoginController($scope,$location,$rootScope,UserService)
     {
-        console.log("Controller function called!");
+
         //$scope.hello = "hello from header controller";
         $scope.$location = $location;
 
@@ -20,8 +20,8 @@
             FB.login(function(response) {
 
                 if (response.status === 'connected') {
-                    console.log(response);
-                    console.log("logged in ");
+
+
                     FB.api('/me', function(response) {
                         console.log("logging more response ");
                         console.log((response));
@@ -59,7 +59,7 @@
         {
             var username = user.username;
             var password = user.password;
-            console.log(" user "+ username + " password " + password);
+            //console.log(" user "+ username + " password " + password);
             UserService.findUserByUsernameAndPassword(username, password)
                 .then(function(currentUser) {
                     if(currentUser != null) {
