@@ -1,6 +1,6 @@
 <div ng-controller="TimelineController" class="container-fluid col-sm-8">
     <h2>{{user.firstname}} follows </h2>
-    <table class="table table-responsive table-striped">
+    <table class="table table-responsive">
         <tr ng-repeat="myUser in following">
             <td>
                 <a href="#/timeline/{{myUser._id}}">{{myUser.firstname}}  {{myUser.lastname}}</a>
