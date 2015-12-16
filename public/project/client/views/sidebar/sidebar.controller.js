@@ -84,7 +84,8 @@
                     $scope.suggestedUsers = [];
 
                     setSuggestedUsers();
-                    $rootScope.$broadcast("followEvent",userId);
+                    //$rootScope.$broadcast("followEvent",userId);
+                    $rootScope.$broadcast("followEvent",foundUser);
                 });
 
         }

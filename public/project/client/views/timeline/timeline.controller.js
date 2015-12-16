@@ -37,11 +37,19 @@
 
             });
 
-        $rootScope.$on("followEvent",function(event,followedUserId){
-            if(userId == followedUserId)
+        $rootScope.$on("followEvent",function(event,followedUser){
+            if(userId == followedUser._id)
             {
                 $scope.showUnfollowButton = "true";
-                setCommonProperties($scope.user.followers,$scope.user.following);
+                if(followedUser._id == $scope.user._id)
+                {
+                    $scope.user = followedUser;
+                    setCommonProperties($scope.user.followers,$scope.user.following);
+                }
+                else{
+                    setCommonProperties($scope.user.followers,$scope.user.following);
+                }
+
 
             }
         });
