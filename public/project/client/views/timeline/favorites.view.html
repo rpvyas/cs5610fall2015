@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Timeline</title>
+</head>
+<body>
+
+
+    <div ng-controller="TimelineController" class="container col-sm-6">
+
+
+        <div>
+            <!-- Tab panes -->
+
+            <div class="row">
+
+                <div style="font-size: large">
+                    <div>
+                        {{user.firstname}}  {{user.lastname}} 's favorites
+
+                    </div>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" content="active" class="tab-pane active" id="forms">
+                            <table class="table table-responsive">
+                                <thead>
+                                <tr>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr ng-repeat="newsitem in favnewsitems">
+                                    <td>
+
+                                        <img class="img-responsive" src="{{newsitem.imageUrl}}">
+                                        <!--<div ng-controller="NewsFeedController">-->
+                                        <div ng-controller="SearchController">
+                                            <a ng-click="showArticle(newsitem)" href="" target="_blank">{{newsitem.title}}</a>
+                                        </div>
+
+                                        <br>
+                                        <!--<button ng-if="ownTimeline !='true'" ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">-->
+                                            <!--<scan class="glyphicon glyphicon-heart"></scan>-->
+                                        <!--</button>-->
+
+                                        <!--<button ng-if="ownTimeline !='true'"ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">-->
+                                            <!--<scan class="glyphicon glyphicon-share"></scan>-->
+                                        <!--</button>-->
+                                    </td>
+
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+</div>
+</body>
+</html>

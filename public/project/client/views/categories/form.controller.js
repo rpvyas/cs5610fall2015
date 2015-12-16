@@ -65,8 +65,10 @@
             user.interests.push(interest);
 
             $scope.interests = user.interests;
+            $scope.interest="";
             console.log(user);
             UserService.updateUser(user, user._id);
+
 
         }
 

@@ -42,12 +42,19 @@
                 <!--<button type="submit" class="btn btn-default">Submit</button>-->
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right">
-                <!--<li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>-->
+                <li><button ng-click="deleteAllUsers()" class="btn btn-danger pull-left">Delete All Users</button></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('search') != -1}"><a href="#/search/" >Search</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('timeline') != -1}"><a href="#/timeline/{{user._id}}" >Timeline</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('signup') != -1}"><a href="#/signup">Signup</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
-                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('categories') != -1}"><a href="#/categories">Settings</a></li>-->
+                <li ng-if="user" class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/categories">Interests</a></li>
+                        <li><a href="#/profile">Personal</a></li>
+                    </ul>
+                </li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('newsfeed') != -1}"><a href="#/newsfeed">News Feed</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a ng-click="logout()" href="">Logout</a></li>
 

@@ -5,7 +5,7 @@
 <body>
 
 <div class="row">
-<div ng-controller="FormController" class="container col-sm-8">
+<div ng-controller="FormController" class="container col-sm-6">
     <!--<div class="container col-sm-8">-->
         <!--<span ng-if="{{$scope.message}}!=null" >-->
 
@@ -14,10 +14,10 @@
         <div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#forms" aria-controls="forms" role="tab" data-toggle="tab">Interests</a></li>
-                <li role="presentation"><a href="#/profile">Personal</a></li>
-            </ul>
+            <!--<ul class="nav nav-tabs" role="tablist">-->
+                <!--<li role="presentation" class="active"><a href="#forms" aria-controls="forms" role="tab" data-toggle="tab">Interests</a></li>-->
+                <!--<li role="presentation"><a href="#/profile">Personal</a></li>-->
+            <!--</ul>-->
 
             <h2>{{$scope.message}}</h2>
             <!-- Tab panes -->
@@ -39,9 +39,7 @@
                                 <button ng-click="addForm(interest)" type="button" class="btn btn-primary">
                                     <scan class="glyphicon glyphicon-plus"></scan>
                                 </button>
-                                <button ng-click="updateForm(selectedFormId, index)" type="button" class="btn btn-success">
-                                    <scan class="glyphicon glyphicon-ok"></scan>
-                                </button>
+
                             </td>
                         </tr>
                         <tr ng-repeat="interest in interests">
@@ -51,9 +49,6 @@
                             <td>
                                 <button ng-click="deleteForm($index)" class="btn btn-danger">
                                     <scan class="glyphicon glyphicon-remove"></scan>
-                                </button>
-                                <button ng-click="selectForm($index)" class="btn btn-info">
-                                    <scan class="glyphicon glyphicon-pencil"></scan>
                                 </button>
                             </td>
                         </tr>

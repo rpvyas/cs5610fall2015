@@ -16,7 +16,10 @@
         function update(user)
         {
             console.log("update called");
-            UserService.updateUser(user, user._id);
+            UserService.updateUser(user, user._id)
+                .then(function(updatedUser){
+                    $scope.successMessage = "information updated";
+                });
         }
 
     }

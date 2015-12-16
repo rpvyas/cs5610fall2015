@@ -1,34 +1,36 @@
 <html>
 <head>
-    <title>Form</title>
+    <title>News Feed</title>
 
 </head>
 <body>
 
 <div class="row">
     <div ng-controller="NewsFeedController" class="container col-sm-6">
-        <h1>inside feed</h1>
+        <h1>News Feed</h1>
 
-        <table class="table table-bordered table-responsive table-condensed">
-            <thead>
-            <tr>
-                <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">Topic Name</span></th>
-            </tr>
-            </thead>
+        <table class="table table-responsive table-condensed">
             <tbody>
 
             <tr ng-repeat="newsitem in temp">
                 <td>
                     <img class="img-responsive" src="{{newsitem.imageUrl}}">
+                    <div ng-controller="SearchController">
                     <a ng-click="showArticle(newsitem)" href="" target="_blank">{{newsitem.title}}</a>
+                    </div>
                     <br>
-                    <button ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
-                        <scan class="glyphicon glyphicon-heart"></scan>
+                    <button ng-if="isFavorited(newsitem)!='true'" ng-click="addFavorite(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
+                        <scan class="glyphicon glyphicon-heart-empty"></scan>
                     </button>
+                    <span ng-if="isFavorited(newsitem)=='true'" title="added to favorites" style="color: red"><span class="glyphicon glyphicon-heart"></span>Added to favorites</span>
+                    <!--<button ng-if="isFavorited(newsitem)=='true'" class="btn btn-info" title="added to favorites"><span class="glyphicon glyphicon-ok"></span></button>-->
                     <button ng-if="isShared(newsitem) != 'true'" ng-click="addToShared(newsitem)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
                         <scan class="glyphicon glyphicon-share"></scan>
                     </button>
+                    <span ng-if="isShared(newsitem)=='true'" title="shared on timeline" style="color: red"><span class="glyphicon glyphicon-ok"></span>Shared on timeline</span>
 
+
+                    <!--<span style="font-size: medium" ng-if="isShared(newsitem)=='true'" class="alert alert-info" role="alert">Shared to your timeline</span>-->
                 </td>
 
             </tr>

@@ -13,6 +13,7 @@
         $scope.addFavorite = addFavorite;
         $scope.showArticle = showArticle;
         $scope.isShared = isShared;
+        $scope.isFavorited = isFavorited;
         $scope.selectedNewsItem = {};
 
         setSelectedNewsItem();
@@ -28,6 +29,7 @@
 
         $rootScope.$on("newsitem", function (event, newsitem) {
             $scope.selectedNewsItem = newsitem;
+
         });
 
         $rootScope.$on("favoriteEvent", function (event, newsitems) {
@@ -36,10 +38,22 @@
 
         function isShared(newsitem)
         {
-            console.log("call to isShared");
             for(var i=0; i<user.sharednewsitems.length;i++)
             {
                 if(user.sharednewsitems[i].title == newsitem.title)
+                {
+                    $rootScope.$broadcast("favoriteEvent",$scope.temp);
+                    return "true";
+                }
+            }
+            return "false";
+
+        }
+        function isFavorited(newsitem)
+        {
+            for(var i=0; i<user.favorites.length;i++)
+            {
+                if(user.favorites[i].title == newsitem.title)
                 {
                     $rootScope.$broadcast("favoriteEvent",$scope.temp);
                     return "true";
@@ -133,9 +147,14 @@
                         newsitem.title = arr[i].webTitle;
                         //TODO get it from API
                         //newsitem.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/47/Anfield,_7_December_2013.jpg";
-                        getImageFromUrl(newsitem,function(newsitem){
-                           newsitems.push(newsitem)
+                        getImageFromUrl(newsitem,function(newsitem)
+                        {
+                            newsitems.push(newsitem)
                         });
+                        getTextFromUrl(newsitem,function(newsitem){
+                            newsitems.push(newsitem)
+                        });
+
                         newsitems.push(newsitem);
                     }
                     callback(newsitems);
@@ -158,6 +177,22 @@
                 });
 
         }
+        function getTextFromUrl(newsitem,callback)
+        {
+            //console.log("Alchemy api call for image ");
+            var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyKey2 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+            $http.jsonp(alchemyImageUrl)
+                .success(function(response){
+                    //console.log(response);
+                    // console.log(response.image);
+                    newsitem.text = (response.text);
+                    callback(newsitem);
+
+                });
+
+        }
 
         //function getImageFromUrl(url,callback)
         //{
@@ -175,22 +210,31 @@
         //}
         function showArticle(newsitem)
         {
-            $scope.dummy= "blah";
-            //console.log("Inside show article");
+
+            console.log("Inside show article");
+            console.log(newsitem);
             var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyKey2 = "d835b54524dd6f4fbf4b6e012d31e136119ed2ba";
             var alchemyTextUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
-            $scope.selectedNewsItem = newsitem;
-            $http.jsonp(alchemyTextUrl)
-                .success(function(response){
-                    //console.log("**RESPONSE***");
-                    //console.log(response);
-                    newsitem.text = response.text;
-                    $scope.selectedNewsItem = newsitem;
-                    $scope.text = response.text;
-                    //console.log($scope.selectedNewsItem.text);
-                    setSelectedNewsItem(newsitem);
-                    //$location.path("/showarticle");
-                });
+
+            console.log("*(*(*(*(*(*(*(");
+            console.log(newsitem.text)
+            console.log(newsitem);
+            console.log("*(*(*(*(*(*(*(");
+            //if(!newsitem.text)
+            {
+                $http.jsonp(alchemyTextUrl)
+                    .success(function (response) {
+                        //console.log("**RESPONSE***");
+                        //console.log(response);
+                        newsitem.text = response.text;
+                        $scope.selectedNewsItem = newsitem;
+                        $scope.text = response.text;
+                        //console.log($scope.selectedNewsItem.text);
+                        setSelectedNewsItem(newsitem);
+                        //$location.path("/showarticle");
+                    });
+            }
             $location.path("/showarticle");
 
         }
@@ -199,6 +243,8 @@
 
         function addToShared(newsitem)
         {
+            console.log("inside shared ");
+            console.log(newsitem);
             var user = $rootScope.user;
             var date = Date();
             newsitem.time = date.toString();

@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Timeline</title>
+</head>
+<body>
+
+
+<div ng-controller="TimelineController" class="container col-sm-6">
+
+
+    <div>
+        <!-- Tab panes -->
+
+        <div class="row">
+
+            <div style="font-size: large">
+                <div>
+                    {{user.firstname}}  {{user.lastname}} 's interests
+                    <br>
+                </div>
+
+                <div class="tab-content">
+                    <div role="tabpanel" content="active" class="tab-pane active" id="forms">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr ng-repeat="interest in interests">
+                                <td>
+                                    {{interest}}
+                                </td>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

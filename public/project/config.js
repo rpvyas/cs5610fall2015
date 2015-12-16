@@ -22,6 +22,16 @@
                     templateUrl: "client/views/timeline/followers.view.html",
                     controller: "TimelineController"
                 })
+                .when("/user/:userId/favorites",
+                {
+                    templateUrl: "client/views/timeline/favorites.view.html",
+                    controller: "TimelineController"
+                })
+                .when("/user/:userId/interests",
+                {
+                    templateUrl: "client/views/timeline/interests.view.html",
+                    controller: "TimelineController"
+                })
                 .when("/user/:userId/following",
                 {
                     templateUrl: "client/views/timeline/following.view.html",
@@ -37,10 +47,15 @@
                     templateUrl: "client/views/user/user.view.html",
                     controller: "UserController"
                 })
-                .when("/searchresults",
+                .when("/searchResults",
                 {
                     templateUrl: "client/views/search/searchresult.view.html",
                     controller: "SearchController"
+                })
+                .when("/articleview",
+                {
+                    templateUrl: "client/views/article/article.view.html",
+                    controller: "ArticleController"
                 })
                 .when("/signup",
                 {

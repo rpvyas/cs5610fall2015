@@ -28,14 +28,15 @@
         font-size: 50px;
     }
 </style>
-
+<body>
+<div  ng-controller="SearchController">
 <div class="jumbotron text-center">
     <h1>News Room</h1>
-    <!--<div id="typewriter"></div>-->
+    <div id="typewriter"></div>
 
     <form class="form-inline">
-        <input type="email" class="form-control" size="50" placeholder="What do you want to learn about?" required>
-        <button type="button" class="btn btn-danger">Search</button>
+        <input ng-model="searchQuery" class="form-control" size="50" placeholder="What do you want to learn about?">
+        <button ng-click="search(searchQuery)" type="button" class="btn btn-danger">Search</button>
     </form>
 
 
@@ -88,28 +89,29 @@
 
     </div>
 
-    <script>
+
+</div>
+</div>
+</body>
+<script>
     var str = "<p>Find | Follow | Collect | Share</p>",
-    i = 0,
-    isTag,
-    text;
+            i = 0,
+            isTag,
+            text;
 
     (function type() {
-    text = str.slice(0, ++i);
-    if (text === str) return;
+        text = str.slice(0, ++i);
+        if (text === str) return;
 
-    document.getElementById('typewriter').innerHTML = text;
+        document.getElementById('typewriter').innerHTML = text;
 
-    var char = text.slice(-1);
-    if( char === '<' ) isTag = true;
-    if( char === '>' ) isTag = false;
+        var char = text.slice(-1);
+        if( char === '<' ) isTag = true;
+        if( char === '>' ) isTag = false;
 
-    if (isTag) return type();
-    setTimeout(type,150);
+        if (isTag) return type();
+        setTimeout(type,150);
     }());
-    </script>
-</div>
-
-
+</script>
 
 

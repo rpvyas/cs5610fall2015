@@ -44,8 +44,8 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <a ng-click=update(user) role="button" class="btn btn-default form-control">Update</a>
-                    {{successMessage}}
+                    <a ng-click=update(user) role="button" class="btn btn-info form-control">Update</a>
+                    <div style="font-size: medium" ng-if="successMessage" class="alert alert-info" role="alert">Information updated successfully...</div>
                 </div>
             </div>
         </form>

@@ -23,11 +23,16 @@
         UserService.findUserById(userId)
             .then(function(user){
                 $scope.newsitems = user.sharednewsitems.reverse();
+                if($scope.newsitems.length == 0)
+                {
+                    $scope.message = "Nothing shared so far";
+                }
                 $scope.followersIds = user.followers;
                 $scope.followingIds = user.following;
                 setCommonProperties($scope.followersIds,$scope.followingIds);
                 $scope.user = user;
-
+                $scope.favnewsitems = user.favorites;
+                $scope.interests = user.interests;
                 setFollowButton(loggedInUser,user);
 
             });
