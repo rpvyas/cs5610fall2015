@@ -27,6 +27,7 @@
                 {
                     $scope.message = "Nothing shared so far";
                 }
+                console.log(user);
                 $scope.followersIds = user.followers;
                 $scope.followingIds = user.following;
                 setCommonProperties($scope.followersIds,$scope.followingIds);
