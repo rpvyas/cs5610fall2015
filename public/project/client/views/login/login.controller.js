@@ -67,6 +67,9 @@
                         $rootScope.$broadcast('auth', currentUser);
                         $location.path("/newsfeed");
                     }
+                    else{
+                        $scope.errorMessage = "Incorrect username or password";
+                    }
                 });
         }
 
