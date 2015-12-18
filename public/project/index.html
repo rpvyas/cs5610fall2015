@@ -36,6 +36,7 @@
     <script src="client/services/UserService.js"></script>
     <script src="client/views/newsfeed/newsfeed.controller.js"></script>
     <script src="client/views/article/article.controller.js"></script>
+    <script src="client/views/showusers/showusers.controller.js"></script>
     <script src="client/views/profile/profile.controller.js"></script>
 
 
@@ -51,7 +52,7 @@
     </div>
     <div class="row">
         <div ng-if="user" ng-controller="SidebarController" class="col-sm-3">
-            <div ng-include="'/project/client/views/sidebar/sidebar.view.html'"></div>
+            <!--<div ng-include="'/project/client/views/sidebar/sidebar.view.html'"></div>-->
         </div>
         <div class="container-fluid" ng-view>
         </div>

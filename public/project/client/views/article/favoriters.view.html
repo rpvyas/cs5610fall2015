@@ -1,0 +1,18 @@
+<div class="col-sm-6">
+    <table class="table table-strpied">
+        <thead>
+        Favoriters
+        </thead>
+        <tbody>
+        <tr ng-repeat="myUser in favoriters">
+            <td>
+                <a href="#/timeline/{{myUser._id}}">
+                    {{myUser.firstname}} {{myUser.lastname}}
+                </a>
+                <!--<a href='http://twitter.com' onclick='window.open("http://twitter.com");return false;'><i class="fa fa-twitter fa-2x">-->
+                <!--</i></a>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -18,18 +18,38 @@
                         {{user.firstname}}  {{user.lastname}}
                         <!--"key == 'City' || key == 'County'">-->
                         <!--<a ng-if="showFollowButton=='true'" ng-click=follow(userId) role="button" class="btn btn-primary">Follow</a>-->
+                        <a ng-if="showFollowButton=='true'" ng-click=follow(userId) role="button" class="btn btn-info pull-right">Follow</a>
                         <a ng-if="showUnfollowButton=='true'" ng-click=unFollow(userId) role="button" class="btn btn-danger pull-right">Unfollow</a>
                     </div>
 
                 <div>
+                <div>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/followers/">FOLLOWERS <span class="badge">{{user.followers.length}}</span></a></li>
+                        <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/following/">FOLLOWING <span class="badge">{{user.following.length}}</span></a></li>
 
-                <ul class="nav nav-pills" role="tablist">
-                    <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/followers/">FOLLOWERS <span class="badge">{{user.followers.length}}</span></a></li>
-                    <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/following/">FOLLOWING <span class="badge">{{user.following.length}}</span></a></li>
-
-                    <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/interests/">INTERESTS <span class="badge">{{user.interests.length}}</span></a></li>
-                    <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/favorites/">FAVORITES <span class="badge">{{user.favorites.length}}</span></a></li>
-                </ul>
+                        <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/interests/">INTERESTS <span class="badge">{{user.interests.length}}</span></a></li>
+                        <li role="presentation"><a style="font-size: small" href="#/user/{{userId}}/favorites/">FAVORITES <span class="badge">{{user.favorites.length}}</span></a></li>
+                    </ul>
+                </div>
+                <!--<table>-->
+                    <!--<thead>-->
+                        <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td role="presentation"><a style="font-size: small" href="#/user/{{userId}}/followers/">FOLLOWERS <span class="badge">{{user.followers.length}}</span></a></td>-->
+                            <!--<td></td>-->
+                            <!--<td role="presentation"><a style="font-size: small" href="#/user/{{userId}}/following/">FOLLOWING <span class="badge">{{user.following.length}}</span></a></td>-->
+                            <!--<td></td>-->
+                            <!--<td role="presentation"><a style="font-size: small" href="#/user/{{userId}}/interests/">INTERESTS <span class="badge">{{user.interests.length}}</span></a></td>-->
+                            <!--<td>  </td>-->
+                            <!--<td role="presentation"><a style="font-size: small" href="#/user/{{userId}}/favorites/">FAVORITES <span class="badge">{{user.favorites.length}}</span></a></td>-->
+                            <!--<td></td>-->
+                        <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
             </div>
             <div>{{message}}</div>
             <div><h3>Timeline</h3></div>

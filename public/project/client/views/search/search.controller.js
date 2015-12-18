@@ -62,6 +62,12 @@
             $scope.temp = results;
         });
 
+        if($rootScope.temp)
+        {
+            $scope.temp= $rootScope.temp;
+            //$location.path("/searchResults");
+        }
+
         $scope.user = $rootScope.user;
 
         function showArticle(newsitem)
@@ -107,6 +113,7 @@
                 $rootScope.$broadcast("searchresults",$scope.temp);
                 return $scope.temp;
             });
+            $rootScope.temp = $scope.temp;
             $location.path("/searchResults");
         }
 

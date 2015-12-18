@@ -14,8 +14,8 @@
 
             <tr ng-repeat="newsitem in temp">
                 <td>
-                    <img class="img-responsive" src="{{newsitem.imageUrl}}">
                     <div ng-controller="SearchController">
+                    <a ng-click="showArticle(newsitem)" href="" target="_blank"><img class="img-responsive" src="{{newsitem.imageUrl}}"></a>
                     <a ng-click="showArticle(newsitem)" href="" target="_blank">{{newsitem.title}}</a>
                     </div>
                     <br>

@@ -7,11 +7,125 @@
 
 <div class="col-sm-6">
 
-    <div class="row">
+    <div class="col">
         <h1>{{article.title}}</h1>
+        <div ng-if="user" ng-controller="NewsFeedController">
+            <button ng-if="isFavorited(article)!='true'" ng-click="addFavorite(article)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Favorite">
+                <scan class="glyphicon glyphicon-heart-empty"></scan>
+            </button>
+            <span ng-if="isFavorited(article)=='true'" title="added to favorites" style="color: red"><span class="glyphicon glyphicon-heart"></span>Added to favorites</span>
+            <!--<button ng-if="isFavorited(newsitem)=='true'" class="btn btn-info" title="added to favorites"><span class="glyphicon glyphicon-ok"></span></button>-->
+            <button ng-if="isShared(article) != 'true'" ng-click="addToShared(article)" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Share">
+                <scan class="glyphicon glyphicon-share"></scan>
+            </button>
+            <span ng-if="isShared(article)=='true'" title="shared on timeline" style="color: red"><span class="glyphicon glyphicon-ok"></span>Shared on timeline</span>
+        </div>
         <img src="{{article.imageUrl}}" class="img-responsive img-rounded">
+        <div ng-if="user">
+            <button class="btn btn-default" ng-click="showUsers(favoriters)">
+                Users who favorited this article <span class="badge">{{favoriters.length}}</span>
+            </button>
+            <button class="btn btn-default" ng-click="showUsers(sharers)">
+                Users who shared this article  <span class="badge">{{sharers.length}}</span>
+            </button>
+        </div>
+
         <br>
         {{article.text}}
     </div>
+    <!--<div class="modal-body">-->
+        <!--<table class="table table-strpied">-->
+            <!--<thead>-->
+                <!--Favoriters-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr ng-repeat="myUser in favoriters">-->
+                <!--<td>-->
+                    <!--<a href="#/timeline/{{myUser._id}}">-->
+                        <!--{{myUser.firstname}} {{myUser.lastname}}-->
+                    <!--</a>-->
+                    <!--&lt;!&ndash;<a href='http://twitter.com' onclick='window.open("http://twitter.com");return false;'><i class="fa fa-twitter fa-2x">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</i></a>&ndash;&gt;-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<table class="table table-strpied">-->
+            <!--<thead>-->
+                <!--Sharers-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr ng-repeat="myUser in sharers">-->
+                <!--<td>-->
+                    <!--<a href="#/timeline/{{myUser._id}}"> {{myUser.firstname}} {{myUser.lastname}}</a>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash; Modal &ndash;&gt;-->
+    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+        <!--<div class="modal-dialog" role="document">-->
+            <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <!--<h4 class="modal-title" id="myModalLabel">Article favorited by</h4>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                    <!--<table class="table table-strpied">-->
+                        <!--<thead>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr ng-repeat="myUser in favoriters">-->
+                            <!--<td>-->
+                                <!--<a href="#/timeline/{{myUser._id}}" onclick='window.open("#/timeline/{{myUser._id}}");'>-->
+                                    <!--{{myUser.firstname}} {{myUser.lastname}}-->
+                                <!--</a>-->
+                                <!--&lt;!&ndash;<a href='http://twitter.com' onclick='window.open("http://twitter.com");return false;'><i class="fa fa-twitter fa-2x">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</i></a>&ndash;&gt;-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--&lt;!&ndash; Modal &ndash;&gt;-->
+    <!--<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">-->
+        <!--<div class="modal-dialog" role="document">-->
+            <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <!--<h4 class="modal-title" id="myModalLabel1">Article shared by</h4>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                    <!--<table class="table table-strpied">-->
+                        <!--<thead>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr ng-repeat="myUser in sharers">-->
+                            <!--<td>-->
+                                <!--<a href="#/timeline/{{myUser._id}}"> {{myUser.firstname}} {{myUser.lastname}}</a>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
 </div>
 </div>

@@ -34,10 +34,12 @@
     <h1>News Room</h1>
     <div id="typewriter"></div>
 
+    <div>
     <form class="form-inline">
         <input ng-model="searchQuery" class="form-control" size="50" placeholder="What do you want to learn about?">
-        <button ng-click="search(searchQuery)" type="button" class="btn btn-danger">Search</button>
+        <button ng-click="search(searchQuery)" aria-setsize="50" type="button" class="btn btn-danger">Search</button>
     </form>
+    </div>
 
 
 </div>

@@ -52,11 +52,17 @@
                     templateUrl: "client/views/search/searchresult.view.html",
                     controller: "SearchController"
                 })
+                .when("/showusers",
+                {
+                    templateUrl: "client/views/showusers/showusers.view.html",
+                    controller:"ShowUsersController"
+                })
                 .when("/articleview",
                 {
                     templateUrl: "client/views/article/article.view.html",
                     controller: "ArticleController"
                 })
+
                 .when("/signup",
                 {
                     templateUrl: "client/views/signup/signup.view.html",

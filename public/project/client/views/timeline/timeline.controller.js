@@ -12,6 +12,7 @@
         $scope.following = [];
         $scope.followers = [];
         $scope.unFollow = unFollow;
+        $scope.follow = follow;
         var userId = $routeParams.userId;
         $scope.userId = userId;
 
@@ -34,6 +35,7 @@
                 $scope.user = user;
                 $scope.favnewsitems = user.favorites;
                 $scope.interests = user.interests;
+
                 setFollowButton(loggedInUser,user);
 
             });
@@ -68,6 +70,29 @@
             {
                 $scope.showUnfollowButton = "true";
             }
+            else if(loggedInUser._id != userId)
+            {
+                $scope.showFollowButton = "true";
+            }
+        }
+        function follow(userId)
+        {
+            var following = loggedInUser.following;
+            following.push(userId);
+            UserService.updateUser(loggedInUser,loggedInUser._id)
+                .then(function (updatedUser){
+                    $scope.showUnfollowButton = "true";
+                    $scope.showFollowButton = "false";
+                    var followedUser = $scope.user;
+                    followedUser.followers.push(updatedUser._id);
+                    UserService.updateUser(followedUser,followedUser._id)
+                        .then(function(updatedFollowedUser){
+                            $scope.followersIds = updatedFollowedUser.followersIds;
+                            setCommonProperties($scope.followersIds,$scope.followingIds);
+                        });
+
+                    $rootScope.$broadcast("followEvent",updatedUser);
+                })
         }
         function unFollow(userId)
         {
@@ -82,6 +107,7 @@
             UserService.updateUser(loggedInUser,loggedInUser._id)
                 .then(function(updatedUser){
                     $scope.showUnfollowButton = "false";
+                    $scope.showFollowButton = "true";
                     $rootScope.$broadcast("unfollowEvent",updatedUser);
 
                     var unfollowedUser = $scope.user;
