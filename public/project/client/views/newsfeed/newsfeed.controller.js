@@ -122,7 +122,7 @@
             var currentTimeStamp = Math.floor(Date.now() / 1000);
             var endTimeStamp = currentTimeStamp - 172800;
             var alchemyUrl = "https://access.alchemyapi.com/calls/data/GetNews?apikey="+alchemyKey1+"&jsonp=JSON_CALLBACK&return=enriched.url.title,enriched.url.url,enriched.url.enrichedTitle.docSentiment&start="+currentTimeStamp+"&end="+endTimeStamp+"&q.enriched.url.cleanedTitle="+interest+"&q.enriched.url.enrichedTitle.docSentiment.type=neutral&q.enriched.url.enrichedTitle.taxonomy.taxonomy_.label=news&count=25&outputMode=json";
-            var guardianUrl = "http://content.guardianapis.com/search?order-by=newest&page-size=5&api-key="+guardianKey1+"&q="+interest+"&callback=JSON_CALLBACK";
+            var guardianUrl = "http://content.guardianapis.com/search?order-by=newest&page-size=5&api-key="+guardianKey+"&q="+interest+"&callback=JSON_CALLBACK";
             var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ urlForImage + "&outputMode=json&jsonp=JSON_CALLBACK";
             //console.log("calling guardian api for "+ interest);
             //process guardian response
@@ -166,8 +166,8 @@
         function getImageFromUrl(newsitem,callback)
         {
             //console.log("Alchemy api call for image ");
-            var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
-            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+            var alchemyKey2 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
+            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetImage?apikey="+alchemyKey2+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
             $http.jsonp(alchemyImageUrl)
                 .success(function(response){
                     //console.log(response);
@@ -183,7 +183,7 @@
             //console.log("Alchemy api call for image ");
             var alchemyKey1 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
             var alchemyKey2 = "0d1a6d2a036e12cda6499d7689fbaf7ac78426ea";
-            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey2+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
+            var alchemyImageUrl = "http://gateway-a.watsonplatform.net/calls/url/URLGetText?apikey="+alchemyKey1+ "&url="+ newsitem.url + "&outputMode=json&jsonp=JSON_CALLBACK";
             $http.jsonp(alchemyImageUrl)
                 .success(function(response){
                     //console.log(response);
