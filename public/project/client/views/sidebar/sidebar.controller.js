@@ -35,7 +35,7 @@
                 .then(function(allUsers){
                     for(var i=0; i<allUsers.length;i++)
                     {
-                        console.log(allUsers);
+                       // console.log(allUsers);
                         var currentUser = allUsers[i];
 
                         if($scope.user._id == currentUser._id)
